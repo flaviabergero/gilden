@@ -224,6 +224,12 @@ footer .legal{border-top:1px solid #2A2A2A;padding-top:22px;font-size:12px;lette
 .co .lgd{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--soft);padding:0;margin-bottom:8px}
 .co .methods{margin:4px 0}
 .ship-line{margin-top:-6px}
+.done p{margin:0 0 16px;font-size:15px;line-height:1.6;color:var(--soft)}
+.tdata{margin:0;display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.tdata>div{display:grid;grid-template-columns:110px minmax(0,1fr);gap:10px;padding:12px 0;border-bottom:1px solid var(--line);align-items:center}
+.tdata dt{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.tdata dd{margin:0;display:flex;justify-content:space-between;align-items:center;gap:10px;font-variant-numeric:tabular-nums;word-break:break-all}
+.method b{font-weight:500}
 .co .method{flex-direction:row;align-items:center;gap:12px;font-size:14px;letter-spacing:0;text-transform:none;color:var(--ink)}
 </style>
 <style>html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
@@ -536,7 +542,13 @@ var SHOP={
         cpHint:'Inserisci il CAP per calcolare la spedizione.',shipCalc:'Calcolo della spedizione…',shipCoord:'Il costo di spedizione si concorda su WhatsApp.',
         shipBad:'Non siamo riusciti a calcolare la spedizione per questo CAP. Controllalo o scegli il ritiro.',
         shipLine:function(p,a,b){return 'Spedizione: '+p+(a?' · arriva in '+(b&&b!==a?a+'–'+b:a)+' giorni lavorativi':'');},
-        usdLine:function(u,d){return 'USD '+u+' al cambio BNA (vendita) di '+d;},
+        usdLine:function(u,ut,d){return 'Bonifico o Mercado Pago USD '+u+' · Carta USD '+ut+' · cambio BNA (vendita) '+d;},
+        totalC:'Totale (bonifico o Mercado Pago)',cardTot:function(t,n,v){return 'Con carta: '+t+' · un’unica soluzione o '+n+' rate senza interessi'+(v?' da '+v:'');},
+        mTransfer:'Bonifico bancario',confirm:'Conferma ordine',doneTitle:'Ordine ricevuto',
+        doneText:function(t){return 'Trasferisci '+t+' sul conto qui sotto e inviaci la ricevuta su WhatsApp per confermare l’ordine.';},
+        doneNoData:function(t){return 'Ti scriviamo su WhatsApp con i dati per trasferire '+t+'.';},
+        alias:'Alias',cbu:'CBU',titular:'Intestatario',banco:'Banca',importe:'Importo',orden:'Ordine n.',copy:'Copia',copied:'Copiato',
+        sendProof:'Invia la ricevuta su WhatsApp',waProof:function(ref,t){return 'Ciao! Ho fatto l’ordine '+ref+' sul sito Gilden. Ti invio la ricevuta del bonifico di '+t+'.';},
         subtotal:'Prodotti',shipping:'Spedizione',free:'Gratis',toCoord:'Da concordare',
         cuotas:function(n,v){return n+' rate senza interessi'+(v?' da '+v:'');},
         opts:function(n,v){return 'In un’unica soluzione o in '+n+' rate senza interessi'+(v?' da '+v:'');},
@@ -558,7 +570,13 @@ var SHOP={
         cpHint:'Ingresá tu código postal para calcular el envío.',shipCalc:'Calculando el envío…',shipCoord:'El costo de envío se coordina por WhatsApp.',
         shipBad:'No pudimos calcular el envío para ese código postal. Revisalo o elegí retiro.',
         shipLine:function(p,a,b){return 'Envío: '+p+(a?' · llega en '+(b&&b!==a?a+' a '+b:a)+' días hábiles':'');},
-        usdLine:function(u,d){return 'USD '+u+' al dólar BNA vendedor de '+d;},
+        usdLine:function(u,ut,d){return 'Transferencia o Mercado Pago USD '+u+' · Tarjeta USD '+ut+' · dólar BNA vendedor '+d;},
+        totalC:'Total (transferencia o Mercado Pago)',cardTot:function(t,n,v){return 'Con tarjeta: '+t+' · 1 pago o '+n+' cuotas sin interés'+(v?' de '+v:'');},
+        mTransfer:'Transferencia bancaria',confirm:'Confirmar pedido',doneTitle:'Pedido recibido',
+        doneText:function(t){return 'Transferí '+t+' a la cuenta de abajo y envianos el comprobante por WhatsApp para confirmar tu pedido.';},
+        doneNoData:function(t){return 'Te escribimos por WhatsApp con los datos para transferir '+t+'.';},
+        alias:'Alias',cbu:'CBU',titular:'Titular',banco:'Banco',importe:'Importe',orden:'Pedido N°',copy:'Copiar',copied:'Copiado',
+        sendProof:'Enviar comprobante por WhatsApp',waProof:function(ref,t){return '¡Hola! Hice el pedido '+ref+' en la web de Gilden. Te envío el comprobante de la transferencia de '+t+'.';},
         subtotal:'Productos',shipping:'Envío',free:'Sin cargo',toCoord:'A coordinar',
         cuotas:function(n,v){return n+' cuotas sin interés'+(v?' de '+v:'');},
         opts:function(n,v){return 'En un pago o en '+n+' cuotas sin interés'+(v?' de '+v:'');},
@@ -577,7 +595,7 @@ var SHOP={
   };
   var FIELDS=[['nombre','text',true,'name'],['email','email',true,'email'],['telefono','tel',true,'tel'],['cp','text',true,'postal-code'],['direccion','text',true,'street-address'],['ciudad','text',true,'address-level2'],['provincia','text',true,'address-level1'],['notas','text',false,'off']];
   var ADDR=['cp','direccion','ciudad','provincia'];
-  var price=0,usdP=140,dolar=0,cuotas=3,publicKey='',live=false,step='cart',draft={},cart={},method='card',ref='',saved=false;
+  var price=0,priceT=0,usdP=140,usdT=160,dolar=0,transfer=null,lastOrder=null,cuotas=3,publicKey='',live=false,step='cart',draft={},cart={},method='transfer',ref='',saved=false;
   var delivery='domicilio',ship={cp:'',price:0,ok:false,coord:false,min:null,max:null,loading:false,bad:false},shipTimer=null;
   var mp=null,fields=null,card={bin:null,methodId:null,typeId:null,issuerId:null,costs:[]};
   function $(id){return document.getElementById(id);}
@@ -586,10 +604,13 @@ var SHOP={
   function save(){try{localStorage.setItem('gilden-cart',JSON.stringify(cart));}catch(e){}}
   function t(){return T[document.documentElement.lang==='es'?'es':'it'];}
   function money(v){return new Intl.NumberFormat('es-AR',{style:'currency',currency:'ARS',maximumFractionDigits:0}).format(v);}
-  function amount(q){return live?money(price*q):'USD '+(USD*q);}
+  function isCard(){return step==='pay'&&method==='card';}
+  function unit(){return isCard()?priceT:price;}
+  function amount(q){return live?money(unit()*q):'USD '+((isCard()?usdT:usdP)*q);}
   function count(){var n=0;for(var k in cart)n+=cart[k];return n;}
   function shipCost(){return delivery==='domicilio'&&ship.ok?ship.price:0;}
-  function total(){return price*count()+shipCost();}
+  function total(){return unit()*count()+shipCost();}
+  function cardTotal(){return priceT*count()+shipCost();}
   function items(){return Object.keys(cart).map(function(id){return {id:id,qty:cart[id]};});}
   function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
   var box=$('cart'),back=$('cart-back'),body=$('cart-body'),foot=$('cart-foot');
@@ -599,8 +620,9 @@ var SHOP={
     var shipTxt=delivery==='retiro'?L.free:(ship.ok?amount1(ship.price):(ship.coord?L.toCoord:'—'));
     return '<div class="tot sub"><span>'+L.subtotal+'</span><span>'+amount(n)+'</span></div>'+
       '<div class="tot sub"><span>'+L.shipping+'</span><span>'+shipTxt+'</span></div>'+
-      '<div class="tot"><span>'+L.total+'</span><b>'+(live?money(total()):amount(n))+'</b></div>'+
-      '<p class="note cuotas-note">'+L.opts(cuotas,live?money(total()/cuotas):'')+'</p>';
+      '<div class="tot"><span>'+(step==='pay'?L.total:L.totalC)+'</span><b>'+(live?money(total()):amount(n))+'</b></div>'+
+      (step!=='pay'?'<p class="note cuotas-note">'+L.cardTot(live?money(cardTotal()):'USD '+usdT*n,cuotas,live?money(cardTotal()/cuotas):'')+'</p>':
+        (method==='card'?'<p class="note cuotas-note">'+L.opts(cuotas,live?money(total()/cuotas):'')+'</p>':''));
   }
   function amount1(v){return live?money(v):'$ '+v;}
   function refreshTotals(){var L=t(),el=$('tot-box');if(el)el.innerHTML=totalsHTML(L,count());var sl=$('ship-line');if(sl){
@@ -617,10 +639,11 @@ var SHOP={
       refreshTotals();
     }).catch(function(){if(ship.cp!==cp)return;ship.loading=false;ship.bad=true;refreshTotals();});
   }
-  function totalBlock(L,n){return '<div class="tot"><span>'+L.total+'</span><b>'+amount(n)+'</b></div><p class="note cuotas-note">'+L.opts(cuotas,live?money(price*n/cuotas):'')+'</p>';}
+  function totalBlock(L,n){return '<div class="tot"><span>'+L.totalC+'</span><b>'+amount(n)+'</b></div><p class="note cuotas-note">'+L.cardTot(live?money(priceT*n):'USD '+usdT*n,cuotas,live?money(priceT*n/cuotas):'')+'</p>';}
 
   function render(){
     var L=t(),n=count();
+    if(step==='done'){renderDone(L);return;}
     $('cart-title').textContent=step==='form'?L.form:(step==='pay'?L.payTitle:L.title);
     $('cart-close').setAttribute('aria-label',L.close);
     var badge=$('cart-count');badge.textContent=n;badge.hidden=!n;
@@ -653,8 +676,9 @@ var SHOP={
     }else{
       body.innerHTML='<div class="pay">'+
         '<fieldset class="methods"><legend class="sr">'+L.payTitle+'</legend>'+
-          '<label class="method"><input type="radio" name="pm" value="card"'+(method==='card'?' checked':'')+'><span>'+L.mCard+'</span></label>'+
-          '<label class="method"><input type="radio" name="pm" value="mp"'+(method==='mp'?' checked':'')+'><span>'+L.mMP+'</span></label>'+
+          '<label class="method"><input type="radio" name="pm" value="transfer"'+(method==='transfer'?' checked':'')+'><span>'+L.mTransfer+(live?' · <b>'+money(price*n+shipCost())+'</b>':'')+'</span></label>'+
+          '<label class="method"><input type="radio" name="pm" value="mp"'+(method==='mp'?' checked':'')+'><span>'+L.mMP+(live?' · <b>'+money(price*n+shipCost())+'</b>':'')+'</span></label>'+
+          '<label class="method"><input type="radio" name="pm" value="card"'+(method==='card'?' checked':'')+'><span>'+L.mCard+(live?' · <b>'+money(priceT*n+shipCost())+'</b> · '+L.opts(cuotas,''):'')+'</span></label>'+
         '</fieldset>'+
         '<form id="card-form" class="co"'+(method==='card'?'':' hidden')+' novalidate>'+
           '<div class="lbl">'+L.cardNumber+'<div class="mpf" id="mp-number"></div></div>'+
@@ -665,14 +689,26 @@ var SHOP={
         '</form>'+
         '<p class="note">'+L.secure+'</p><p class="co-msg" id="co-msg" role="alert" hidden></p></div>';
       foot.innerHTML='<div id="tot-box">'+totalsHTML(L,n)+'</div>'+
-        '<button type="button" class="btn" id="co-pay">'+(method==='card'?L.payBtn(live?money(total()):amount(n)):L.payMP)+'</button>'+
+        '<button type="button" class="btn" id="co-pay">'+payLabel(L)+'</button>'+
         '<button type="button" class="linkbtn small" data-step="form">'+L.backData+'</button>';
       if(method==='card')mountCard();
     }
   }
 
   function showMsg(text){var m=$('co-msg');if(m){m.textContent=text;m.hidden=false;}}
-  function busy(on){var b=$('co-pay'),L=t();if(!b)return;b.disabled=on;b.textContent=on?L.processing:(method==='card'?L.payBtn(live?money(total()):amount(count())):L.payMP);}
+  function payLabel(L){return method==='card'?L.payBtn(live?money(total()):amount(count())):(method==='mp'?L.payMP:L.confirm);}
+  function busy(on){var b=$('co-pay'),L=t();if(!b)return;b.disabled=on;b.textContent=on?L.processing:payLabel(L);}
+  function renderDone(L){
+    var o=lastOrder||{};$('cart-title').textContent=L.doneTitle;
+    var badge=$('cart-count');badge.textContent=0;badge.hidden=true;
+    var rows=[[L.orden,o.ref]];
+    if(transfer){[['alias',transfer.alias],['cbu',transfer.cbu],['titular',transfer.titular],['banco',transfer.banco]].forEach(function(x){if(x[1])rows.push([L[x[0]],x[1],true]);});}
+    rows.push([L.importe,o.total,true]);
+    body.innerHTML='<div class="done"><p>'+(transfer?L.doneText(o.total):L.doneNoData(o.total))+'</p><dl class="tdata">'+rows.map(function(x){
+      return '<div><dt>'+x[0]+'</dt><dd><span>'+esc(x[1])+'</span>'+(x[2]?'<button type="button" class="linkbtn small" data-copy="'+esc(x[1])+'">'+L.copy+'</button>':'')+'</dd></div>';}).join('')+'</dl></div>';
+    var wa=(window.SHOP&&SHOP.whatsapp)||'';
+    foot.innerHTML='<a class="btn" target="_blank" rel="noopener" href="https://wa.me/'+wa+'?text='+encodeURIComponent(L.waProof(o.ref,o.total))+'">'+L.sendProof+'</a>';
+  }
 
   /* --- SDK de Mercado Pago (campos seguros de tarjeta) --- */
   function loadScript(src){return new Promise(function(res,rej){if(document.querySelector('script[src="'+src+'"]'))return res();var s=document.createElement('script');s.src=src;s.onload=res;s.onerror=rej;document.head.appendChild(s);});}
@@ -756,6 +792,12 @@ var SHOP={
     var L=t();$('co-msg').hidden=true;
     if(!live){showMsg(L.preview);return;}
     var base={items:items(),ref:ref,nombre:draft.nombre,email:draft.email,entrega:delivery,cp:draft.cp||''};
+    if(method==='transfer'){
+      busy(true);var tot=money(total());
+      saveOrder('Transferencia').then(function(){lastOrder={ref:ref,total:tot};cart={};save();ref='';saved=false;step='done';render();updatePrices();})
+        .catch(function(){busy(false);showMsg(L.err);});
+      return;
+    }
     if(method==='mp'){
       busy(true);
       saveOrder('Mercado Pago').then(function(){return api(Object.assign({modo:'mp'},base));})
@@ -785,14 +827,14 @@ var SHOP={
     document.querySelectorAll('[data-price]').forEach(function(s){s.textContent=live?money(price):'USD '+USD;});
     document.querySelectorAll('.card .meta > div').forEach(function(d){
       var c=d.querySelector('.cuotas');if(!c){c=document.createElement('span');c.className='kind cuotas';d.appendChild(c);}
-      c.textContent=L.cuotas(cuotas,live?money(price/cuotas):'');
+      c.textContent=live?L.cardTot(money(priceT),cuotas,money(priceT/cuotas)):L.cuotas(cuotas,'');
       var u=d.querySelector('.usdline');if(!u){u=document.createElement('span');u.className='kind usdline';d.appendChild(u);}
-      u.textContent=live&&dolar?L.usdLine(usdP,money(dolar)):'';u.hidden=!(live&&dolar);
+      u.textContent=live&&dolar?L.usdLine(usdP,usdT,money(dolar)):'';u.hidden=!(live&&dolar);
     });
   }
 
   function openCart(){box.hidden=false;back.hidden=false;document.documentElement.style.overflow='hidden';render();$('cart-close').focus();}
-  function closeCart(){keepDraft();box.hidden=true;back.hidden=true;document.documentElement.style.overflow='';unmountCard();if(step==='pay')step='form';$('cart-open').focus();}
+  function closeCart(){keepDraft();box.hidden=true;back.hidden=true;document.documentElement.style.overflow='';unmountCard();if(step==='pay')step='form';if(step==='done')step='cart';$('cart-open').focus();}
 
   document.addEventListener('click',function(e){
     var add=e.target.closest('[data-add]');
@@ -801,6 +843,9 @@ var SHOP={
     if(e.target.closest('#cart-open')){step='cart';openCart();return;}
     if(e.target.closest('#cart-close')||e.target===back){closeCart();return;}
     if(e.target.closest('#co-pay')){pay();return;}
+    var cp=e.target.closest('[data-copy]');
+    if(cp){var v=cp.getAttribute('data-copy'),L0=t();var ok=function(){cp.textContent=L0.copied;};
+      try{navigator.clipboard.writeText(v).then(ok,function(){});}catch(err){}return;}
     var b;
     if((b=e.target.closest('[data-inc]'))){var i=b.dataset.inc;cart[i]=Math.min(MAXQ,cart[i]+1);ref='';save();render();return;}
     if((b=e.target.closest('[data-dec]'))){var d=b.dataset.dec;cart[d]-=1;if(cart[d]<1)delete cart[d];ref='';save();render();return;}
@@ -813,10 +858,10 @@ var SHOP={
   });
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!box.hidden)closeCart();});
 
-  window.GildenCart={refresh:function(){if(step==='pay'){var L=t();$('cart-title').textContent=L.payTitle;updatePrices();return;}keepDraft();render();updatePrices();}};
+  window.GildenCart={refresh:function(){if(step==='done'){renderDone(t());updatePrices();return;}if(step==='pay'){var L=t();$('cart-title').textContent=L.payTitle;updatePrices();return;}keepDraft();render();updatePrices();}};
   render();updatePrices();
   fetch('/api/pago').then(function(r){return r.ok?r.json():null;}).then(function(j){
-    if(j&&j.precio>0){price=j.precio;usdP=j.usd||140;dolar=j.dolar||0;cuotas=j.cuotas||3;publicKey=j.publicKey||'';live=true;render();updatePrices();}
+    if(j&&j.precio>0){price=j.precio;priceT=j.precioTarjeta||j.precio;usdP=j.usd||140;usdT=j.usdTarjeta||160;transfer=j.transferencia||null;dolar=j.dolar||0;cuotas=j.cuotas||3;publicKey=j.publicKey||'';live=true;render();updatePrices();}
   }).catch(function(){});
 })();
 </script>

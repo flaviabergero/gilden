@@ -2,7 +2,9 @@
 // Variables de entorno que se cargan en Netlify (Project configuration > Environment variables):
 //   MP_ACCESS_TOKEN     Access Token de producción (privado, empieza con APP_USR-)
 //   MP_PUBLIC_KEY       Public Key de producción (empieza con APP_USR-)
-//   PRECIO_USD          Precio en dólares (por defecto 140). Se cobra en pesos al dólar vendedor del BNA.
+//   PRECIO_USD          Precio por transferencia o Mercado Pago, en dólares (por defecto 140)
+//   PRECIO_USD_TARJETA  Precio con tarjeta, en dólares (por defecto 160)
+//   TRANSFER_ALIAS, TRANSFER_CBU, TRANSFER_TITULAR, TRANSFER_BANCO  datos para transferencias
 //   CUOTAS_SIN_INTERES  Cuotas sin interés que activaste en Mercado Pago (3)
 //
 // GET  /api/pago  -> precio, cuotas y public key para la web
@@ -30,18 +32,27 @@ const mp = (path, token, body, extraHeaders = {}) =>
 export default async (req) => {
   const cuotas = Number(process.env.CUOTAS_SIN_INTERES || 3);
   const p = await precioActual();
-  const precio = p ? p.precio : 0;
 
   if (req.method === 'GET') {
-    return json({ precio, usd: p && p.usd, dolar: p && p.dolar, fuente: p && p.fuente, cuotas, publicKey: process.env.MP_PUBLIC_KEY || '' });
+    const e = process.env;
+    return json({
+      precio: p ? p.contado : 0, precioTarjeta: p ? p.tarjeta : 0,
+      usd: p && p.usd, usdTarjeta: p && p.usdTarjeta, dolar: p && p.dolar, fuente: p && p.fuente,
+      cuotas, publicKey: e.MP_PUBLIC_KEY || '',
+      transferencia: (e.TRANSFER_ALIAS || e.TRANSFER_CBU)
+        ? { alias: e.TRANSFER_ALIAS || '', cbu: e.TRANSFER_CBU || '', titular: e.TRANSFER_TITULAR || '', banco: e.TRANSFER_BANCO || '' }
+        : null
+    });
   }
   if (req.method !== 'POST') return json({ error: 'method' }, 405);
 
   const token = process.env.MP_ACCESS_TOKEN;
-  if (!token || !(precio > 0)) return json({ error: 'config' }, 500);
+  if (!token || !p) return json({ error: 'config' }, 500);
 
   let body;
   try { body = await req.json(); } catch { return json({ error: 'body' }, 400); }
+  // Tarjeta: USD 160. Mercado Pago (dinero en cuenta): USD 140.
+  const precio = body.modo === 'tarjeta' ? p.tarjeta : p.contado;
 
   // El precio sale siempre de acá, nunca de lo que manda el navegador.
   const vistos = new Set();

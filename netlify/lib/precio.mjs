@@ -1,9 +1,10 @@
-// Precio en pesos = precio en dólares x dólar vendedor (billete) del Banco Nación.
+// Precios en pesos = precio en dólares x dólar vendedor (billete) del Banco Nación.
 // Variables de entorno en Netlify (todas opcionales):
-//   PRECIO_USD       precio de cada perfume en dólares (por defecto 140)
-//   REDONDEO_ARS     redondea el precio en pesos hacia arriba a este múltiplo (por defecto 100)
-//   DOLAR_RESPALDO   cotización a usar si no se puede leer la del BNA
-//   PRECIO_ARS       si lo cargás, se usa este precio fijo en pesos y se ignora el dólar
+//   PRECIO_USD          precio por transferencia o Mercado Pago, en dólares (por defecto 140)
+//   PRECIO_USD_TARJETA  precio con tarjeta (1 pago o 3 cuotas sin interés), en dólares (por defecto 160)
+//   REDONDEO_ARS        redondea hacia arriba a este múltiplo (por defecto 100)
+//   DOLAR_RESPALDO      cotización a usar si no se puede leer la del BNA
+//   PRECIO_ARS / PRECIO_ARS_TARJETA   precios fijos en pesos (si los cargás, se ignora el dólar)
 
 let cache = null;
 const VIGENCIA = 15 * 60 * 1000; // vuelve a consultar el BNA cada 15 minutos
@@ -46,13 +47,18 @@ export async function cotizacionDolar() {
   return cache;
 }
 
-// Devuelve { precio, usd, dolar, fuente } o null si no hay cotización.
+// Devuelve { contado, tarjeta, usd, usdTarjeta, dolar, fuente } o null si no hay cotización.
 export async function precioActual() {
-  const fijo = Number(process.env.PRECIO_ARS || 0);
   const usd = Number(process.env.PRECIO_USD || 140);
-  if (fijo > 0) return { precio: fijo, usd, dolar: null, fuente: 'fijo' };
+  const usdTarjeta = Number(process.env.PRECIO_USD_TARJETA || 160);
+  const fijo = Number(process.env.PRECIO_ARS || 0);
+  if (fijo > 0) {
+    const fijoT = Number(process.env.PRECIO_ARS_TARJETA || 0) || fijo;
+    return { contado: fijo, tarjeta: fijoT, usd, usdTarjeta, dolar: null, fuente: 'fijo' };
+  }
   const c = await cotizacionDolar();
   if (!c) return null;
   const paso = Math.max(1, Number(process.env.REDONDEO_ARS || 100));
-  return { precio: Math.ceil((usd * c.venta) / paso) * paso, usd, dolar: c.venta, fuente: c.fuente };
+  const pesos = (u) => Math.ceil((u * c.venta) / paso) * paso;
+  return { contado: pesos(usd), tarjeta: pesos(usdTarjeta), usd, usdTarjeta, dolar: c.venta, fuente: c.fuente };
 }

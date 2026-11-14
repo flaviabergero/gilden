@@ -4,9 +4,13 @@ Web de Gilden con carrito y pago por Mercado Pago.
 
 **Dirección:** https://gildenprofumi.com (también responde en www.gildenprofumi.com y gildenprofumi.netlify.app).
 
-Formas de pago:
-- **Tarjeta de crédito o débito**, dentro de la web: solo **1 pago** o **3 cuotas sin interés**.
-- **Mercado Pago** (dinero en cuenta u otros medios): siempre en **1 pago**.
+Formas de pago y precios (en pesos, al dólar vendedor del BNA):
+- **Transferencia bancaria**: USD 140. El cliente ve tus datos bancarios y te manda el comprobante por WhatsApp.
+- **Mercado Pago** (dinero en cuenta u otros medios): USD 140, en **1 pago**.
+- **Tarjeta de crédito o débito**, dentro de la web: USD 160, en **1 pago** o **3 cuotas sin interés**.
+
+Datos de transferencia (variables en Netlify): `TRANSFER_ALIAS`, `TRANSFER_CBU`, `TRANSFER_TITULAR`, `TRANSFER_BANCO`.
+Precios en dólares: `PRECIO_USD` (transferencia y Mercado Pago, 140) y `PRECIO_USD_TARJETA` (tarjeta, 160).
 
 Entrega:
 - **Envío a domicilio**: el costo se calcula solo con el código postal del cliente (Correo Argentino) y se suma al total.
