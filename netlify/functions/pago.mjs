@@ -2,7 +2,7 @@
 // Variables de entorno que se cargan en Netlify (Project configuration > Environment variables):
 //   MP_ACCESS_TOKEN     Access Token de producción (privado, empieza con APP_USR-)
 //   MP_PUBLIC_KEY       Public Key de producción (empieza con APP_USR-)
-//   PRECIO_ARS          Precio en pesos de cada perfume, solo números (ej: 180000)
+//   PRECIO_USD          Precio en dólares (por defecto 140). Se cobra en pesos al dólar vendedor del BNA.
 //   CUOTAS_SIN_INTERES  Cuotas sin interés que activaste en Mercado Pago (3)
 //
 // GET  /api/pago  -> precio, cuotas y public key para la web
@@ -10,6 +10,7 @@
 //                    { modo: 'mp', ... }       crea el link de Mercado Pago (un solo pago)
 
 import { cotizar } from '../lib/envio.mjs';
+import { precioActual } from '../lib/precio.mjs';
 
 const PRODUCTOS = {
   'dolce-peccato': 'Dolce Peccato · Eau de parfum 45 ml',
@@ -27,10 +28,13 @@ const mp = (path, token, body, extraHeaders = {}) =>
   }).then(async (r) => ({ ok: r.ok, status: r.status, data: await r.json().catch(() => ({})) }));
 
 export default async (req) => {
-  const precio = Number(process.env.PRECIO_ARS || 0);
   const cuotas = Number(process.env.CUOTAS_SIN_INTERES || 3);
+  const p = await precioActual();
+  const precio = p ? p.precio : 0;
 
-  if (req.method === 'GET') return json({ precio, cuotas, publicKey: process.env.MP_PUBLIC_KEY || '' });
+  if (req.method === 'GET') {
+    return json({ precio, usd: p && p.usd, dolar: p && p.dolar, fuente: p && p.fuente, cuotas, publicKey: process.env.MP_PUBLIC_KEY || '' });
+  }
   if (req.method !== 'POST') return json({ error: 'method' }, 405);
 
   const token = process.env.MP_ACCESS_TOKEN;

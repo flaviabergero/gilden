@@ -536,6 +536,7 @@ var SHOP={
         cpHint:'Inserisci il CAP per calcolare la spedizione.',shipCalc:'Calcolo della spedizione…',shipCoord:'Il costo di spedizione si concorda su WhatsApp.',
         shipBad:'Non siamo riusciti a calcolare la spedizione per questo CAP. Controllalo o scegli il ritiro.',
         shipLine:function(p,a,b){return 'Spedizione: '+p+(a?' · arriva in '+(b&&b!==a?a+'–'+b:a)+' giorni lavorativi':'');},
+        usdLine:function(u,d){return 'USD '+u+' al cambio BNA (vendita) di '+d;},
         subtotal:'Prodotti',shipping:'Spedizione',free:'Gratis',toCoord:'Da concordare',
         cuotas:function(n,v){return n+' rate senza interessi'+(v?' da '+v:'');},
         opts:function(n,v){return 'In un’unica soluzione o in '+n+' rate senza interessi'+(v?' da '+v:'');},
@@ -557,6 +558,7 @@ var SHOP={
         cpHint:'Ingresá tu código postal para calcular el envío.',shipCalc:'Calculando el envío…',shipCoord:'El costo de envío se coordina por WhatsApp.',
         shipBad:'No pudimos calcular el envío para ese código postal. Revisalo o elegí retiro.',
         shipLine:function(p,a,b){return 'Envío: '+p+(a?' · llega en '+(b&&b!==a?a+' a '+b:a)+' días hábiles':'');},
+        usdLine:function(u,d){return 'USD '+u+' al dólar BNA vendedor de '+d;},
         subtotal:'Productos',shipping:'Envío',free:'Sin cargo',toCoord:'A coordinar',
         cuotas:function(n,v){return n+' cuotas sin interés'+(v?' de '+v:'');},
         opts:function(n,v){return 'En un pago o en '+n+' cuotas sin interés'+(v?' de '+v:'');},
@@ -575,7 +577,7 @@ var SHOP={
   };
   var FIELDS=[['nombre','text',true,'name'],['email','email',true,'email'],['telefono','tel',true,'tel'],['cp','text',true,'postal-code'],['direccion','text',true,'street-address'],['ciudad','text',true,'address-level2'],['provincia','text',true,'address-level1'],['notas','text',false,'off']];
   var ADDR=['cp','direccion','ciudad','provincia'];
-  var price=0,cuotas=3,publicKey='',live=false,step='cart',draft={},cart={},method='card',ref='',saved=false;
+  var price=0,usdP=140,dolar=0,cuotas=3,publicKey='',live=false,step='cart',draft={},cart={},method='card',ref='',saved=false;
   var delivery='domicilio',ship={cp:'',price:0,ok:false,coord:false,min:null,max:null,loading:false,bad:false},shipTimer=null;
   var mp=null,fields=null,card={bin:null,methodId:null,typeId:null,issuerId:null,costs:[]};
   function $(id){return document.getElementById(id);}
@@ -784,6 +786,8 @@ var SHOP={
     document.querySelectorAll('.card .meta > div').forEach(function(d){
       var c=d.querySelector('.cuotas');if(!c){c=document.createElement('span');c.className='kind cuotas';d.appendChild(c);}
       c.textContent=L.cuotas(cuotas,live?money(price/cuotas):'');
+      var u=d.querySelector('.usdline');if(!u){u=document.createElement('span');u.className='kind usdline';d.appendChild(u);}
+      u.textContent=live&&dolar?L.usdLine(usdP,money(dolar)):'';u.hidden=!(live&&dolar);
     });
   }
 
@@ -812,7 +816,7 @@ var SHOP={
   window.GildenCart={refresh:function(){if(step==='pay'){var L=t();$('cart-title').textContent=L.payTitle;updatePrices();return;}keepDraft();render();updatePrices();}};
   render();updatePrices();
   fetch('/api/pago').then(function(r){return r.ok?r.json():null;}).then(function(j){
-    if(j&&j.precio>0){price=j.precio;cuotas=j.cuotas||3;publicKey=j.publicKey||'';live=true;render();updatePrices();}
+    if(j&&j.precio>0){price=j.precio;usdP=j.usd||140;dolar=j.dolar||0;cuotas=j.cuotas||3;publicKey=j.publicKey||'';live=true;render();updatePrices();}
   }).catch(function(){});
 })();
 </script>

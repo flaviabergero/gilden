@@ -37,7 +37,7 @@ Entrega:
 4. **Claves y precio** (en Netlify: Project configuration > Environment variables > Add a variable)
    - `MP_ACCESS_TOKEN` = el Access Token de Mercado Pago
    - `MP_PUBLIC_KEY` = la Public Key de Mercado Pago
-   - `PRECIO_ARS` = precio de cada perfume en pesos, solo números (ej: `180000`)
+   - `PRECIO_USD` = precio de cada perfume en dólares (si no lo cargás, usa 140). Se cobra en pesos al **dólar vendedor del Banco Nación** del momento (se consulta bna.com.ar cada 15 minutos), redondeado hacia arriba a $100.
    - `CUOTAS_SIN_INTERES` = `3`
    - Después: Deploys > "Trigger deploy" > "Deploy project".
 
@@ -60,11 +60,13 @@ Entrega:
    - Domain management > "Add a domain": comprá uno nuevo o conectá el que tengas (por ejemplo un .com.ar de nic.ar).
 
 8. **Prueba**
-   - Poné temporalmente `PRECIO_ARS` en `100`, hacé una compra real con tu tarjeta y revisá que te llegue el email del pedido y el pago en Mercado Pago. Después devolvé el dinero desde Mercado Pago y volvé al precio real.
+   - Cargá temporalmente `PRECIO_ARS` = `100`, hacé una compra real con tu tarjeta y revisá que te llegue el email del pedido y el pago en Mercado Pago. Después devolvé el dinero desde Mercado Pago y borrá `PRECIO_ARS` para volver al precio con dólar BNA.
 
 ## Cómo te llega cada venta
 - **Email de Netlify** con el pedido: número (ref), productos, forma de pago, entrega, costo de envío, total, nombre, teléfono y dirección.
 - **Mercado Pago** te avisa del pago; la "referencia externa" es el mismo número de pedido.
 
 ## Cambiar el precio
-Editá `PRECIO_ARS` en Netlify y hacé "Trigger deploy". No hay que tocar la web.
+- El precio en pesos se actualiza solo con el dólar vendedor del BNA.
+- Para cambiar el precio en dólares, editá `PRECIO_USD` en Netlify y hacé "Trigger deploy".
+- Si alguna vez querés un precio fijo en pesos, cargá `PRECIO_ARS` (ese valor manda sobre el dólar). Para volver al dólar, borrá `PRECIO_ARS`.
