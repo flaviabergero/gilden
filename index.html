@@ -1,0 +1,821 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Gilden, profumi d’autore. Dolce Peccato e Il tepore, 45 ml.">
+<meta property="og:title" content="Gilden · Profumi d’autore">
+<meta property="og:image" content="dolce-peccato.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect width=%2264%22 height=%2264%22 fill=%22%230A0A0A%22/%3E%3Ctext x=%2232%22 y=%2246%22 font-family=%22Georgia,serif%22 font-style=%22italic%22 font-weight=%22700%22 font-size=%2240%22 fill=%22white%22 text-anchor=%22middle%22%3EG%3C/text%3E%3C/svg%3E">
+<title>Gilden · Profumi d’autore</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500;1,700&family=Jost:wght@300;400;500&family=Montserrat:wght@400;600;700&display=swap">
+<style>
+/* Layout: bianco e nero, bande a tutta larghezza alternate, contenuto max 1320px */
+:root{
+  --ink:#0A0A0A; --paper:#FFFFFF; --mist:#F3F3F3; --line:#E3E3E3;
+  --mute:#666666; --mute-dk:#B3B3B3; --soft:#3A3A3A;
+  --display:'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --body:'Jost', 'Helvetica Neue', Arial, sans-serif;
+  color-scheme: light;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-weight:300;font-size:16px;line-height:1.6}
+a{color:inherit}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid currentColor;outline-offset:3px}
+.wrap{max-width:1320px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.eyebrow{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--mute)}
+.dark .eyebrow{color:var(--mute-dk)}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;text-wrap:balance;line-height:1.05}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 30px;font-family:var(--body);font-size:12px;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;border:1px solid var(--ink);background:var(--ink);color:var(--paper);cursor:pointer}
+.btn.ghost{background:var(--paper);color:var(--ink)}
+.dark .btn{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+.dark .btn.ghost{background:transparent;color:var(--paper)}
+.btn:hover{opacity:.85}
+
+/* Logo */
+.logo{display:inline-flex;flex-direction:column;align-items:center;color:var(--ink);text-decoration:none}
+.logo .name{font-family:var(--display);font-style:italic;font-weight:700;line-height:.95;font-size:var(--s,64px);letter-spacing:-.01em}
+.logo .rule{display:flex;align-items:center;gap:.55em;margin:.4em 0 .5em;font-size:calc(var(--s,64px)*.2)}
+.logo .rule i{display:block;width:5.2em;height:max(1px,.1em);background:currentColor}
+.logo .rule b{display:block;width:.8em;height:.8em;border:max(1px,.11em) solid currentColor;transform:rotate(45deg)}
+.logo .tag{font-family:'Montserrat',var(--body);font-weight:600;font-size:max(7px,calc(var(--s,64px)*.15));letter-spacing:.22em;padding-left:.22em}
+.dark .logo{color:var(--paper)}
+
+/* Header */
+.bar{background:var(--ink);color:var(--paper);text-align:center;font-size:12px;letter-spacing:.18em;text-transform:uppercase;padding-block:10px}
+header{border-bottom:1px solid var(--line)}
+header .wrap{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;padding-block:18px}
+nav{display:flex;flex-wrap:wrap;gap:24px;font-size:12px;letter-spacing:.2em;text-transform:uppercase}
+nav a{text-decoration:none}
+.icons{display:flex;justify-content:flex-end;gap:4px}
+.icons button{width:44px;height:44px;border:0;background:transparent;color:var(--ink);display:flex;align-items:center;justify-content:center;cursor:pointer}
+.icons svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.4}
+
+/* Bottle */
+.bottle{position:relative;width:180px;height:360px;flex:none}
+.bottle .cap{position:absolute;left:52px;top:0;width:76px;height:86px;border-radius:6px 6px 3px 3px;background:linear-gradient(90deg,#0a0a0a,#2c2c2c 20%,#161616 46%,#050505 76%,#1f1f1f)}
+.bottle .ring{position:absolute;left:57px;top:86px;width:66px;height:10px;background:linear-gradient(90deg,#8a8a8a,#f3f3f3 28%,#a8a8a8 58%,#e8e8e8 84%,#7a7a7a)}
+.bottle .neck{position:absolute;left:64px;top:96px;width:52px;height:9px;background:linear-gradient(90deg,rgba(190,190,190,.55),rgba(250,250,250,.75),rgba(180,180,180,.55))}
+.bottle .glass{position:absolute;left:15px;top:104px;width:150px;height:254px;border-radius:9px;border:1.5px solid rgba(80,80,80,.32);background:linear-gradient(90deg,rgba(255,255,255,.62),rgba(232,232,232,.28) 30%,rgba(255,255,255,.5) 70%,rgba(214,214,214,.4));box-shadow:0 34px 40px -28px rgba(0,0,0,.45);overflow:hidden}
+.bottle .juice{position:absolute;left:13px;right:13px;top:11px;height:176px;border-radius:16px;border:1px solid rgba(0,0,0,.14);overflow:hidden}
+.bottle .juice::before{content:"";position:absolute;inset:0;background:var(--liquid,#ddd);opacity:.42}
+.bottle .tube{position:absolute;left:74px;top:11px;width:1.5px;height:172px;background:rgba(0,0,0,.16)}
+.bottle .base{position:absolute;left:0;right:0;bottom:0;height:56px;border-top:1px solid rgba(0,0,0,.12);background:linear-gradient(180deg,rgba(255,255,255,.25),rgba(196,196,196,.38))}
+.bottle .shine{position:absolute;left:6px;top:6px;bottom:6px;width:7px;border-radius:4px;background:rgba(255,255,255,.55)}
+.bottle img{position:absolute;left:16px;top:24px;width:116px;height:77px;object-fit:cover;box-shadow:0 1px 2px rgba(0,0,0,.25)}
+.bottle .lbl{position:absolute;left:16px;top:24px;width:116px;height:77px;background:#F1E9D2;color:#111;font-family:'Montserrat',Arial,sans-serif;display:flex;flex-direction:column;align-items:center;padding:10px 6px 5px;box-shadow:0 1px 2px rgba(0,0,0,.25);line-height:1}
+.bottle .lbl b{font-weight:700;font-size:12.5px;letter-spacing:-.01em}
+.bottle .lbl em{font-style:normal;font-size:8px;margin-top:4px}
+.bottle .lbl small{margin-top:auto;display:flex;justify-content:space-between;width:100%;font-size:4.6px}
+.bottle .cord{position:absolute;left:112px;top:94px;width:70px;height:100px}
+.bottle .cord path{fill:none;stroke:#141414;stroke-width:2.4;stroke-linecap:round}
+.bottle .cord rect{fill:#B69A92}
+.big .bottle{transform:scale(1.2);transform-origin:bottom center}
+.bigslot{width:216px;height:432px;display:flex;align-items:flex-end;justify-content:center}
+
+/* Hero */
+.dark{background:var(--ink);color:var(--paper)}
+.hero .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:56px;padding-block:clamp(56px,8vw,112px)}
+.hero .copy{flex:1 1 380px;min-width:0;display:flex;flex-direction:column;gap:26px;max-width:560px}
+.hero h1{font-size:clamp(42px,5.4vw,76px)}
+.hero p{margin:0;font-size:17px;color:#CFCFCF;max-width:440px}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:14px;padding-top:6px}
+.hero .shelf{flex:1 1 380px;display:flex;flex-direction:column;align-items:center}
+.hero .pair{display:flex;align-items:flex-end;justify-content:center;gap:28px;flex-wrap:wrap}
+.hero .plank{width:min(100%,520px);height:24px;background:#1E1E1E;border-top:1px solid #333}
+
+/* Collection */
+.sec{padding-block:clamp(64px,8vw,112px)}
+.head{display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;margin-bottom:48px}
+.head h2{font-size:clamp(36px,4vw,54px)}
+.orn{display:flex;align-items:center;gap:10px}.orn i{width:40px;height:1px;background:currentColor}.orn b{display:block;width:8px;height:8px;border:1px solid currentColor;transform:rotate(45deg)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:28px}
+.feat .sub{font-family:var(--display);font-style:italic;font-size:24px;color:var(--soft);margin-top:-8px}
+.feat .story{display:flex;flex-direction:column;gap:14px}
+.feat .story p{font-size:16px;line-height:1.75}
+.feat .quote{font-family:var(--display);font-style:italic;font-size:clamp(24px,2.4vw,30px);line-height:1.35;color:var(--ink)}
+.feat .sign{font-size:12px;letter-spacing:.24em;text-transform:uppercase;font-weight:500}
+.feat .draft{font-size:12px;color:var(--mute)}
+.card{display:flex;flex-direction:column;gap:22px;min-width:0}
+.card .stage{background:var(--mist);display:flex;justify-content:center;align-items:center;padding:0 16px;height:clamp(440px,42vw,560px)}
+.card .stage.photo{padding:0;background:#F5E0F2;overflow:hidden;height:auto;aspect-ratio:4/5}
+.card .stage.photo img{width:100%;height:100%;object-fit:cover;object-position:50% 54%;display:block}
+.herophoto{margin:0;width:min(100%,440px);aspect-ratio:3/4;overflow:hidden;background:#F5E0F2}
+.herophoto img{width:100%;height:100%;object-fit:cover;object-position:50% 54%;display:block;transform:scale(1.18);transform-origin:50% 54%}
+.herophotos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;width:min(100%,580px)}
+.herophotos .herophoto{width:100%}
+.herophoto.tep,.card .stage.photo.tep,.feat .pic.photo.tep{background:#F3E3E6}
+.feat .pic.photo{background:#F5E0F2;overflow:hidden;position:relative;aspect-ratio:4/5;min-height:0}
+.feat .pic.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 54%}
+.card .meta{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
+.card h3{font-size:34px}
+.card .kind{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+.card .price{font-size:18px;font-weight:400}
+.card .acts{display:flex;flex-wrap:wrap;gap:12px}.card .acts .btn{flex:1 1 200px}
+
+/* Feature */
+.feat{display:flex;flex-wrap:wrap}
+.feat.rev{flex-wrap:wrap-reverse;background:var(--mist)}
+.feat .pic{flex:1 1 440px;display:flex;align-items:center;justify-content:center;min-height:560px}
+.feat .pic.blk{background:var(--ink)}.feat .pic.wht{background:var(--paper)}
+.feat .txt{flex:1 1 440px;min-width:0;display:flex;flex-direction:column;justify-content:center;gap:22px;padding:clamp(40px,6vw,96px) max(16px,env(safe-area-inset-right,0px)) clamp(40px,6vw,96px) max(16px,env(safe-area-inset-left,0px))}
+.feat .txt>*{max-width:460px;margin-left:clamp(0px,4vw,64px)}
+.feat h2{font-style:italic;font-size:clamp(44px,4.6vw,64px)}
+.feat p{margin:0;font-size:17px;color:var(--soft)}
+.notes{display:flex;flex-direction:column;gap:8px;font-size:14px;border-top:1px solid var(--line);padding-top:18px}
+.notes b{font-weight:500;font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+.more{font-size:12px;letter-spacing:.22em;text-transform:uppercase;text-underline-offset:6px}
+
+/* Maison + news + footer */
+.maison{border-top:1px solid var(--line)}
+.maison .wrap{max-width:760px;display:flex;flex-direction:column;align-items:center;gap:22px;text-align:center}
+.maison p{margin:0;font-size:18px;line-height:1.8;color:var(--soft)}
+.maison .mstory{display:flex;flex-direction:column;gap:18px;max-width:640px}
+.maison .msign{font-family:var(--display);font-style:italic;font-size:clamp(24px,3vw,30px);line-height:1.3;max-width:560px;text-wrap:balance;color:var(--ink);padding-top:6px}
+.mani{border-bottom:1px solid var(--line)}
+.mani .wrap{max-width:900px;display:flex;flex-direction:column;align-items:center;gap:22px;text-align:center}
+.mani h2{font-style:italic;font-size:clamp(36px,4.6vw,62px)}
+.mani p{margin:0;font-size:18px;line-height:1.8;color:var(--soft);max-width:640px}
+.pillars{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:14px 40px;font-size:12px;letter-spacing:.24em;text-transform:uppercase;font-weight:500}
+.pillars li{display:flex;align-items:center;gap:12px}
+.pillars b{display:block;width:7px;height:7px;border:1px solid currentColor;transform:rotate(45deg)}
+.news{background:var(--mist)}
+.news .wrap{max-width:640px;display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center}
+.news h2{font-size:38px}.news p{margin:0;color:var(--soft)}
+.news form{display:flex;flex-wrap:wrap;width:100%;padding-top:6px}
+.news input{flex:1 1 240px;min-width:0;min-height:52px;border:1px solid var(--ink);border-radius:0;padding:0 18px;font:15px var(--body);background:var(--paper);color:var(--ink)}
+.news .ok{font-size:14px;color:var(--soft)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+footer .wrap{display:flex;flex-direction:column;gap:44px;padding-block:64px 28px}
+footer .cols{display:flex;flex-wrap:wrap;gap:40px;justify-content:space-between}
+footer .col{display:flex;flex-direction:column;gap:11px;font-size:14px;flex:0 1 190px}
+footer .col span{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#8F8F8F}
+footer .col a{text-decoration:none;color:var(--paper)}
+footer .brand{flex:1 1 260px;display:flex;flex-direction:column;gap:14px;align-items:flex-start}
+footer .brand p{margin:0;color:var(--mute-dk);font-size:14px}
+footer .legal{border-top:1px solid #2A2A2A;padding-top:22px;font-size:12px;letter-spacing:.14em;color:#8F8F8F}
+
+@media (max-width:760px){
+  header .wrap{grid-template-columns:1fr auto;}
+  header nav{grid-column:1 / -1;order:3;justify-content:center;gap:16px;font-size:11px;letter-spacing:.16em}
+  header .logo{justify-self:start}
+  .feat .pic{min-height:0;padding-block:48px}
+  .feat .pic.photo{padding-block:0;aspect-ratio:3/4}
+  .feat .txt>*{margin-left:0}
+  .big .bottle{transform:none}
+  .bigslot{width:180px;height:360px}
+  .hero .pair{flex-wrap:nowrap;gap:0}
+  .hero .pair .bottle{transform:scale(.82);transform-origin:bottom center;margin:0 -10px}
+  .hero .ctas .btn{flex:1 1 220px}
+  .news .btn{flex:1 1 100%}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.lang{display:flex;align-items:center;gap:2px;margin-right:6px}
+.lang button{min-width:40px;height:44px;border:0;background:transparent;color:var(--mute);font:500 12px var(--body);letter-spacing:.14em;cursor:pointer;padding:0 6px}
+.lang button[aria-pressed="true"]{color:var(--ink);text-decoration:underline;text-underline-offset:6px}
+.lang span{color:var(--line)}
+@media (max-width:480px){.icons button[data-ia]:not(.cart){display:none}}
+.cartbtn{position:relative;width:44px;height:44px;border:0;background:transparent;color:var(--ink);display:flex;align-items:center;justify-content:center;cursor:pointer}
+.cartbtn svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.4}
+.cartcount{position:absolute;top:4px;right:2px;min-width:17px;height:17px;padding:0 4px;border-radius:9px;background:var(--ink);color:var(--paper);font:500 10px/17px var(--body);text-align:center}
+.linkbtn{background:none;border:0;padding:0;font-family:var(--body);color:inherit;text-decoration:underline;text-underline-offset:6px;cursor:pointer;align-self:flex-start;letter-spacing:.22em;text-transform:uppercase;font-size:12px;min-height:32px}
+.cart-back{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:60}
+.cart{position:fixed;top:0;right:0;bottom:0;width:min(440px,100%);background:var(--paper);color:var(--ink);z-index:61;display:flex;flex-direction:column;box-shadow:-20px 0 40px rgba(0,0,0,.15);padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);padding-right:env(safe-area-inset-right,0px)}
+.cart-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid var(--line)}
+.cart-head h2{font-size:28px}
+.cart-x{width:44px;height:44px;border:0;background:transparent;color:var(--ink);cursor:pointer;display:flex;align-items:center;justify-content:center;flex:none}
+.cart-x svg{width:20px;height:20px;stroke:currentColor;stroke-width:1.4;fill:none}
+.cart-body{flex:1;overflow-y:auto;padding:20px}
+.cart-foot{border-top:1px solid var(--line);padding:16px 20px 20px;display:flex;flex-direction:column;gap:10px}
+.cart-foot:empty{display:none}
+.cart-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:18px}
+.ci{display:grid;grid-template-columns:72px minmax(0,1fr) auto;gap:14px;align-items:start}
+.ci img{width:72px;height:96px;object-fit:cover;object-position:50% 54%;background:var(--mist)}
+.ci-info{display:flex;flex-direction:column;gap:3px;min-width:0}
+.ci-info b{font-family:var(--display);font-weight:400;font-size:22px;line-height:1.1}
+.ci-info span{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.qty{display:flex;align-items:center;border:1px solid var(--line);width:max-content;margin-top:8px}
+.qty button{width:40px;height:40px;border:0;background:transparent;font-size:17px;cursor:pointer;color:var(--ink)}
+.qty output{min-width:26px;text-align:center;font-variant-numeric:tabular-nums}
+.ci-price{font-variant-numeric:tabular-nums;font-weight:400;white-space:nowrap}
+.linkbtn.small{font-size:11px;letter-spacing:.16em;color:var(--mute)}
+.tot{display:flex;justify-content:space-between;align-items:baseline;font-size:15px}
+.tot b{font-weight:500;font-size:19px;font-variant-numeric:tabular-nums}
+.note{font-size:13px;color:var(--soft);margin:0}
+.cuotas-note{color:var(--ink);font-weight:400}
+.cart-empty{color:var(--soft);margin:0}
+.co{display:flex;flex-direction:column;gap:14px}
+.co label{display:flex;flex-direction:column;gap:6px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--soft)}
+.co input{min-height:46px;border:1px solid #C9C9C9;border-radius:0;padding:10px 12px;font:16px var(--body);color:var(--ink);background:var(--paper);text-transform:none;letter-spacing:0}
+.co-msg{font-size:14px;color:#8A1C1C;margin:0}
+.card .meta>div{display:flex;flex-direction:column;gap:4px}
+.card .kind.cuotas{color:var(--ink);letter-spacing:.08em}
+.btn[disabled]{opacity:.55;cursor:default}
+.methods{border:0;margin:0 0 18px;padding:0;display:flex;flex-direction:column;gap:10px}
+.method{display:flex;align-items:center;gap:12px;border:1px solid var(--line);padding:14px;font-size:14px;cursor:pointer}
+.method:has(input:checked){border-color:var(--ink)}
+.method input{accent-color:#0A0A0A;width:18px;height:18px;margin:0;flex:none}
+.co .lbl{display:flex;flex-direction:column;gap:6px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--soft)}
+.mpf{height:46px;border:1px solid #C9C9C9;padding:0 12px;background:var(--paper)}
+.co .row2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.co select{min-height:46px;border:1px solid #C9C9C9;border-radius:0;padding:0 10px;font:16px var(--body);color:var(--ink);background:var(--paper);text-transform:none;letter-spacing:0}
+.pay .note{margin-top:4px}
+.tot.sub{font-size:14px;color:var(--soft)}
+.co .lgd{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--soft);padding:0;margin-bottom:8px}
+.co .methods{margin:4px 0}
+.ship-line{margin-top:-6px}
+.co .method{flex-direction:row;align-items:center;gap:12px;font-size:14px;letter-spacing:0;text-transform:none;color:var(--ink)}
+</style>
+<style>html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+
+
+<div class="bar" data-i="bar">Spedizioni in tutto il paese · Ordina online o su WhatsApp</div>
+
+<header>
+  <div class="wrap">
+    <nav data-ia="navLabel" aria-label="Principale">
+      <a href="#profumi" data-i="nav1">Profumi</a>
+      <a href="#dolce" data-i="nav2">Collezione</a>
+      <a href="#maison" data-i="nav3">La nostra storia</a>
+    </nav>
+    <a class="logo" href="#" style="--s:52px" aria-label="Gilden, home">
+      <span class="name">Gilden</span>
+    </a>
+    <div class="icons">
+      <div class="lang" role="group" data-ia="langLabel" aria-label="Lingua">
+        <button type="button" data-lang="it" aria-pressed="true">IT</button><span aria-hidden="true">·</span>
+        <button type="button" data-lang="es" aria-pressed="false">ES</button>
+      </div>
+      <button type="button" class="cartbtn" id="cart-open" aria-label="Carrello"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1 13H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="cartcount" id="cart-count" hidden>0</span></button>
+    </div>
+  </div>
+</header>
+
+<template id="bottle-tpl">
+  <div class="bottle">
+    <div class="cap"></div><div class="ring"></div><div class="neck"></div>
+    <div class="glass"><div class="juice"></div><div class="tube"></div><div class="base"></div><div class="shine"></div><img alt=""><div class="lbl" hidden><b>Citrus Poetry</b><em>eau de parfum</em><small><span>handcrafted perfume</span><span>30 ml 1.0 fl.oz.</span></small></div></div>
+    <svg class="cord" viewBox="0 0 70 100" aria-hidden="true"><path d="M2 6C30 10 50 30 50 74"/><path d="M4 10C34 18 56 36 56 74"/><rect x="47" y="72" width="12" height="18" rx="2"/></svg>
+  </div>
+</template>
+
+<section class="dark hero">
+  <div class="wrap">
+    <div class="copy">
+      <span class="eyebrow" data-i="heroEye">Profumi d’autore</span>
+      <h1 data-ih="heroH1">L’essenza <i>del senza tempo.</i></h1>
+      <p data-i="heroP">Dolce Peccato e Il tepore. Due fragranze, due storie da indossare.</p>
+      <div class="ctas">
+        <a class="btn" href="#profumi" data-i="cta1">Scopri la collezione</a>
+        <a class="btn ghost" href="#" target="_blank" rel="noopener" data-wa-general data-i="cta2">Scrivici su WhatsApp</a>
+      </div>
+    </div>
+    <div class="shelf">
+      <div class="herophotos">
+        <figure class="herophoto"><img src="dolce-peccato.jpg" alt="Dolce Peccato, eau de parfum 45 ml"></figure>
+        <figure class="herophoto tep"><img src="il-tepore.jpg" alt="Il tepore, extrait de parfum 45 ml"></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="profumi" class="sec">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow" data-i="colEye">La collezione</span>
+      <h2 data-i="colH2">I nostri profumi</h2>
+      <div class="orn" aria-hidden="true"><i></i><b></b><i></i></div>
+    </div>
+    <div class="cards">
+      <article class="card">
+        <div class="stage photo"><img src="dolce-peccato.jpg" alt="Dolce Peccato, eau de parfum 45 ml"></div>
+        <div class="meta"><div><h3>Dolce Peccato</h3><span class="kind">Eau de parfum · 45 ml</span></div><span class="price" data-price>USD 140</span></div>
+        <div class="acts"><button type="button" class="btn" data-add data-i="buy">Aggiungi al carrello</button><a class="btn ghost" href="#" target="_blank" rel="noopener" data-wa data-i="order">Ordina su WhatsApp</a></div>
+      </article>
+      <article class="card">
+        <div class="stage photo tep"><img src="il-tepore.jpg" alt="Il tepore, extrait de parfum 45 ml"></div>
+        <div class="meta"><div><h3>Il tepore</h3><span class="kind">Extrait de parfum · 45 ml</span></div><span class="price" data-price>USD 140</span></div>
+        <div class="acts"><button type="button" class="btn" data-add data-i="buy">Aggiungi al carrello</button><a class="btn ghost" href="#" target="_blank" rel="noopener" data-wa data-i="order">Ordina su WhatsApp</a></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="dolce" class="feat">
+  <div class="pic photo"><img src="dolce-peccato.jpg" alt="Dolce Peccato, eau de parfum 45 ml"></div>
+  <div class="txt">
+    <span class="eyebrow">Eau de parfum · 45 ml</span>
+    <h2>Dolce Peccato</h2>
+    <span class="sub" data-i="dpSub">La dolcezza dell’inaspettato</span>
+    <div class="story">
+      <p data-i="dp1">Camminava sicura di sé, con la brezza che le accarezzava la pelle e la libertà di chi non si aspetta niente da nessuno. Finché, senza cercarla, arrivò una dolcezza inaspettata: giocosa all’inizio, poi sempre più intensa e avvolgente.</p>
+      <p data-i="dp2">Un calice di vino, sguardi complici e una notte così calda che sembrava non voler finire mai. Il momento di salutarsi arrivò con un bacio sulla guancia e un sorriso che fingeva che non fosse successo nulla.</p>
+      <p data-i="dp3">E lei riprese il suo cammino, senza promesse, senza rancori né aspettative, con un sorriso appena accennato e la sensazione che qualcosa di quella notte restasse ancora sulla sua pelle.</p>
+    </div>
+    <span class="sign" data-i="sign">Una storia da indossare</span>
+    <button type="button" class="linkbtn" data-add data-i="more">Aggiungi al carrello</button>
+  </div>
+</section>
+
+<section class="feat rev">
+  <div class="txt">
+    <span class="eyebrow">Extrait de parfum · 45 ml</span>
+    <h2>Il tepore</h2>
+    <span class="sub" data-i="itSub">Il calore del sole d’autunno</span>
+    <div class="story">
+      <p data-i="it1">Agrumi tutt’intorno, un paesaggio bellissimo all’aria aperta, il freddo del mattino e un raggio di sole sul viso che trasforma il calore in qualcosa di profondamente confortante.</p>
+      <p data-i="it2">Non c’è sensazione più bella di questa.</p>
+      <p data-i="it3">Il tepore è ispirato a quel preciso momento. Il tepore del sole autunnale. Un calore che non brucia né opprime, ma che contrasta piacevolmente con l’aria fresca circostante.</p>
+    </div>
+    <span class="sign" data-i="sign">Una storia da indossare</span>
+    <button type="button" class="linkbtn" data-add data-i="more">Aggiungi al carrello</button>
+  </div>
+  <div class="pic photo tep"><img src="il-tepore.jpg" alt="Il tepore, extrait de parfum 45 ml"></div>
+</section>
+
+
+<section id="maison" class="sec maison">
+  <div class="wrap">
+    <span class="eyebrow" data-i="msEye">La nostra storia</span>
+    <span class="logo" style="--s:96px">
+      <span class="name">Gilden</span>
+      <span class="rule" aria-hidden="true"><i></i><b></b><i></i></span>
+      <span class="tag">PROFUMI D’AUTORE</span>
+    </span>
+    <div class="mstory">
+      <p data-i="ms1">Gilden nasce dalla fusione di due epoche.</p>
+      <p data-i="ms2">Da una parte i buoni valori di una volta, la qualità dei materiali, l’amore e la passione in tutto ciò che si costruisce, grazie ai nostri nonni. Dall’altra la voglia di crescere e l’estetica curata di oggi.</p>
+      <p data-i="ms3">Eravamo stanchi di vedere cose fatte male e di bassa qualità. Per questo siamo qui per rompere la regola e offrire i migliori profumi nelle migliori confezioni.</p>
+    </div>
+    <span class="msign" data-i="msSign">Qualità e prestigio: è questo che ci sta più a cuore.</span>
+  </div>
+</section>
+
+<section class="sec news">
+  <div class="wrap">
+    <h2 data-i="newsH2">Vantaggi esclusivi</h2>
+    <p data-i="newsP">Lascia la tua e-mail per ricevere offerte esclusive, essere il primo a scoprire le novità e far parte della famiglia Gilden.</p>
+    <form id="news-form" name="newsletter" method="POST" data-netlify="true">
+      <input type="hidden" name="form-name" value="newsletter">
+      <label for="news-email" class="sr">Email</label>
+      <input id="news-email" name="email" type="email" required data-ip="newsPh" placeholder="Il tuo indirizzo email">
+      <button class="btn" type="submit" data-i="newsBtn">Iscriviti</button>
+    </form>
+    <span class="ok" id="news-ok" hidden data-i="newsOk">Grazie! Ti terremo aggiornato sulle novità.</span>
+    <span class="ok" id="news-err" hidden data-i="newsErr">Non è stato possibile salvare la tua email. Riprova tra poco.</span>
+  </div>
+</section>
+
+<div class="cart-back" id="cart-back" hidden></div>
+<aside class="cart" id="cart" role="dialog" aria-modal="true" aria-labelledby="cart-title" hidden>
+  <div class="cart-head"><h2 id="cart-title">Il tuo carrello</h2><button type="button" class="cart-x" id="cart-close" aria-label="Chiudi"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div class="cart-body" id="cart-body"></div>
+  <div class="cart-foot" id="cart-foot"></div>
+</aside>
+<form name="pedido" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input name="ref"><input name="nombre"><input name="email"><input name="telefono"><input name="direccion"><input name="ciudad"><input name="provincia"><input name="cp"><input name="notas"><input name="entrega"><input name="envio"><input name="detalle"><input name="total"><input name="bot-field">
+</form>
+
+<footer class="dark">
+  <div class="wrap">
+    <div class="cols">
+      <div class="brand">
+        <span class="logo" style="--s:44px">
+          <span class="name">Gilden</span>
+          <span class="rule" aria-hidden="true"><i></i><b></b><i></i></span>
+          <span class="tag">PROFUMI D’AUTORE</span>
+        </span>
+        <p data-i="footP">Ordina online o scrivici su WhatsApp.</p>
+      </div>
+      <div class="col"><span data-i="fHelp">Assistenza</span><a href="#" data-i="fContact">Contatti</a><a href="#" data-i="fShip">Spedizioni e consegne</a><a href="#" data-i="fReturns">Resi</a><a href="#" data-i="fFaq">Domande frequenti</a></div>
+      <div class="col"><span data-i="fLegal">Legale</span><a href="#" data-i="fPrivacy">Privacy</a><a href="#" data-i="fCookie">Cookie</a><a href="#" data-i="fTerms">Termini e condizioni</a></div>
+      <div class="col"><span data-i="fFollow">Seguici</span><a href="#" target="_blank" rel="noopener" data-ig>Instagram</a><a href="#" target="_blank" rel="noopener" data-wa-general>WhatsApp</a></div>
+    </div>
+    <div class="legal">© 2026 GILDEN · PROFUMI D’AUTORE</div>
+  </div>
+</footer>
+
+<script>
+/* ===== DATOS DE LA TIENDA: completá acá ===== */
+var SHOP={
+  whatsapp:'5493535639474',   // número con código de país, sin + ni espacios
+  instagram:'https://www.instagram.com/gildenprofumi/'
+};
+/* ============================================ */
+(function(){
+  var MSG={
+    it:{buy:function(p){return 'Ciao! Vorrei acquistare '+p+' 45 ml.';},gen:'Ciao! Vorrei informazioni sui profumi Gilden.'},
+    es:{buy:function(p){return '¡Hola! Quiero comprar '+p+' 45 ml.';},gen:'¡Hola! Quiero información sobre los perfumes Gilden.'}
+  };
+  function wa(text){return 'https://wa.me/'+(SHOP.whatsapp||'')+'?text='+encodeURIComponent(text);}
+  function productOf(el){var box=el.closest('.card,.feat');var h=box&&box.querySelector('h3,h2');return h?h.textContent.trim():'';}
+  function updateLinks(l){
+    var m=MSG[l]||MSG.it;
+    document.querySelectorAll('[data-wa]').forEach(function(a){a.href=wa(m.buy(productOf(a)));});
+    document.querySelectorAll('[data-wa-general]').forEach(function(a){a.href=wa(m.gen);});
+    document.querySelectorAll('[data-ig]').forEach(function(a){if(SHOP.instagram){a.href=SHOP.instagram;}else{a.hidden=true;}});
+    if(window.GildenCart)window.GildenCart.refresh();
+  }
+  window.__gildenUpdateLinks=updateLinks;
+  var data={dolce:{src:'label-dolce-peccato.png',alt:'Dolce Peccato',liquid:'#E9A3BC'},tepore:{src:'label-il-tepore.png',alt:'Il tepore',liquid:'#D9A866'},citrus:{css:true,liquid:'#EED77A'}};
+  var tpl=document.getElementById('bottle-tpl');
+  document.querySelectorAll('[data-bottle]').forEach(function(slot){
+    var d=data[slot.getAttribute('data-bottle')];
+    var b=tpl.content.firstElementChild.cloneNode(true);
+    b.style.setProperty('--liquid',d.liquid);
+    var img=b.querySelector('img');
+    if(d.css){img.remove();b.querySelector('.lbl').hidden=false;}
+    else{img.src=d.src;img.alt=d.alt;b.querySelector('.lbl').remove();}
+    slot.replaceWith(b);
+  });
+
+  var T={
+    es:{
+      bar:'Envíos a todo el país · Comprá online o por WhatsApp',
+      navLabel:'Principal',nav1:'Perfumes',nav2:'Colección',langLabel:'Idioma',search:'Buscar',account:'Cuenta',cart:'Carrito',
+      heroEye:'Perfumes de autor',heroH1:'La esencia <i>de lo atemporal.</i>',
+      heroP:'Dolce Peccato y Il tepore. Dos fragancias, dos historias para llevar puestas.',
+      cta1:'Descubrí la colección',cta2:'Escribinos por WhatsApp',
+      colEye:'La colección',colH2:'Nuestros perfumes',price:'[PRECIO]',buy:'Agregar al carrito',order:'Pedir por WhatsApp',
+      dpSub:'La dulzura de lo inesperado',
+      dp1:'Caminaba segura de sí misma, con la brisa acariciando su piel y la libertad de quien no espera nada de nadie. Hasta que, sin buscarla, llegó una dulzura inesperada, juguetona al principio, pero cada vez más intensa y envolvente.',
+      dp2:'Una copa de vino, miradas cómplices y una noche tan cálida que parecía no querer terminar nunca. El momento de despedirse llegó con un beso en la mejilla y una sonrisa que fingía que nada había sucedido.',
+      dp3:'Y ella retomó su camino, sin promesas, sin rencores ni expectativas, con una sonrisa apenas perceptible y la sensación de que algo de aquella noche todavía permanecía sobre su piel.',
+      sign:'Una historia para llevar puesta',more:'Agregar al carrito',
+      itSub:'El calor del sol otoñal',
+      it1:'Cítricos a tu alrededor, un paisaje hermoso al aire libre, el frío de la mañana y un rayo de sol en la cara que transforma el calor del sol en algo sumamente reconfortante.',
+      it2:'No hay sensación más linda que esta.',
+      it3:'Il tepore está inspirado en ese preciso momento. El calor del sol otoñal. Un calor que no quema ni agobia, sino que contrasta agradablemente con el aire fresco que te rodea.',
+      cpSub:'La luz de una mañana de verano',
+      cp1:'Una ventana abierta, el primer sol que entra sin pedir permiso. Sobre la mesa, una cáscara recién cortada deja en el aire una estela fresca y luminosa, casi una promesa.',
+      cp2:'Es el perfume de los días que empiezan livianos y de los pensamientos que, sin darse cuenta, se vuelven versos.',
+      draft:'Texto provisorio',
+      nav3:'Nuestra historia',msEye:'Nuestra historia',
+      ms1:'Gilden nace de la fusión de dos épocas.',
+      ms2:'Los buenos valores de antes, la calidad de los materiales, el amor y la pasión en todo lo que se construye, gracias a nuestros abuelos. Y por otro lado, las ganas de progresar y la estética cuidada de hoy en día.',
+      ms3:'Nos cansamos de ver cosas mal hechas y de baja calidad. Por eso venimos a romper con la regla y ofrecer los mejores aromas en las mejores presentaciones.',
+      msSign:'La calidad y el prestigio son lo que más nos interesa.',
+      newsH2:'Beneficios exclusivos',newsP:'Dejá tu e-mail para recibir ofertas exclusivas, ser el primero en enterarte de las novedades y formar parte de la familia Gilden.',newsPh:'Tu correo electrónico',newsBtn:'Suscribirme',
+      newsOk:'¡Gracias! Te vamos a avisar de las novedades.',newsErr:'No pudimos guardar tu correo. Probá de nuevo en un rato.',
+      footP:'Comprá online o escribinos por WhatsApp.',fHelp:'Atención',fContact:'Contacto',fShip:'Envíos y entregas',fReturns:'Cambios y devoluciones',fFaq:'Preguntas frecuentes',
+      fLegal:'Legales',fPrivacy:'Privacidad',fCookie:'Cookies',fTerms:'Términos y condiciones',fFollow:'Seguinos'
+    },
+    en:{
+      bar:'Nationwide shipping · Order online or on WhatsApp',
+      navLabel:'Main',nav1:'Perfumes',nav2:'Collection',langLabel:'Language',search:'Search',account:'Account',cart:'Cart',
+      heroEye:'Signature perfumes',heroH1:'The art of perfume, <i>in two acts.</i>',
+      heroP:'Dolce Peccato and Il tepore. Two fragrances, two stories to wear.',
+      cta1:'Discover the collection',cta2:'Message us on WhatsApp',
+      colEye:'The collection',colH2:'Our perfumes',price:'[PRICE]',add:'Add to cart',order:'Order on WhatsApp',
+      dpSub:'The sweetness of the unexpected',
+      dp1:'She walked with confidence, the breeze caressing her skin, with the freedom of someone who expects nothing from anyone. Until, without looking for it, an unexpected sweetness arrived: playful at first, then ever more intense and enveloping.',
+      dp2:'A glass of wine, knowing glances and a night so warm it seemed it would never end. The goodbye came with a kiss on the cheek and a smile that pretended nothing had happened.',
+      dp3:'And she went on her way, with no promises, no grudges and no expectations, with a barely visible smile and the feeling that something of that night still lingered on her skin.',
+      sign:'A story to wear',more:'Discover',
+      itSub:'The warmth of the autumn sun',
+      itQ:'The warmth of the autumn sun. A warmth that neither burns nor overwhelms, but pleasantly contrasts with the cool air around you.',
+      cpSub:'The light of a summer morning',
+      cp1:'An open window, the first sun coming in without asking. On the table, a freshly cut peel leaves a fresh, luminous trail in the air, almost a promise.',
+      cp2:'It is the scent of days that begin lightly, and of thoughts that, without noticing, turn into verse.',
+      draft:'Draft text',
+      maisonP:'[Your story: who you are, where Gilden comes from and what each fragrance tells.]',maisonLink:'Our story',
+      newsH2:'Stay in touch',newsP:'News, new fragrances and previews, straight to your inbox.',newsPh:'Your email address',newsBtn:'Subscribe',
+      newsOk:'Thank you! This is a preview: sign-up will work on the real site.',
+      footP:'Order online or message us on WhatsApp.',fHelp:'Customer care',fContact:'Contact',fShip:'Shipping & delivery',fReturns:'Returns',fFaq:'FAQ',
+      fLegal:'Legal',fPrivacy:'Privacy',fCookie:'Cookies',fTerms:'Terms & conditions',fFollow:'Follow us'
+    }
+  };
+  // Italian is the text already in the page: capture it once so we can switch back.
+  var it={};
+  document.querySelectorAll('[data-i]').forEach(function(el){it[el.dataset.i]=el.textContent;});
+  document.querySelectorAll('[data-ih]').forEach(function(el){it[el.dataset.ih]=el.innerHTML;});
+  document.querySelectorAll('[data-ip]').forEach(function(el){it[el.dataset.ip]=el.getAttribute('placeholder');});
+  document.querySelectorAll('[data-ia]').forEach(function(el){it[el.dataset.ia]=el.getAttribute('aria-label');});
+  T.it=it;
+
+  function setLang(l){
+    var d=T[l]||it;
+    document.querySelectorAll('[data-i]').forEach(function(el){var v=d[el.dataset.i];if(v!=null)el.textContent=v;});
+    document.querySelectorAll('[data-ih]').forEach(function(el){var v=d[el.dataset.ih];if(v!=null)el.innerHTML=v;});
+    document.querySelectorAll('[data-ip]').forEach(function(el){var v=d[el.dataset.ip];if(v!=null)el.setAttribute('placeholder',v);});
+    document.querySelectorAll('[data-ia]').forEach(function(el){var v=d[el.dataset.ia];if(v!=null)el.setAttribute('aria-label',v);});
+    document.documentElement.lang=l;
+    document.querySelectorAll('[data-lang]').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.lang===l));});
+    updateLinks(l);
+    try{localStorage.setItem('gilden-lang',l);}catch(e){}
+  }
+  document.querySelectorAll('[data-lang]').forEach(function(b){b.addEventListener('click',function(){setLang(b.dataset.lang);});});
+  var saved='it';try{saved=localStorage.getItem('gilden-lang')||'it';}catch(e){}
+  setLang(saved==='es'?'es':'it');
+
+  var f=document.getElementById('news-form');
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var ok=document.getElementById('news-ok'),err=document.getElementById('news-err');
+    err.hidden=true;
+    fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(new FormData(f)).toString()})
+      .then(function(r){if(!r.ok)throw new Error(r.status);f.hidden=true;ok.hidden=false;})
+      .catch(function(){err.hidden=false;});
+  });
+})();
+
+/* ===== Carrito y pago Gilden ===== */
+(function(){
+  var PRODUCTS={
+    'dolce-peccato':{name:'Dolce Peccato',kind:'Eau de parfum · 45 ml',img:'dolce-peccato.jpg'},
+    'il-tepore':{name:'Il tepore',kind:'Extrait de parfum · 45 ml',img:'il-tepore.jpg'}
+  };
+  var BY_NAME={'Dolce Peccato':'dolce-peccato','Il tepore':'il-tepore'};
+  var USD=140, MAXQ=10, ALLOWED=[1,3];
+  var T={
+    it:{title:'Il tuo carrello',empty:'Il carrello è vuoto.',remove:'Rimuovi',less:'Togli uno',more:'Aggiungi uno',total:'Totale',
+        ship:'La spedizione si calcola con il CAP nel passo successivo.',
+        delivery:'Consegna',dHome:'Spedizione a domicilio (Correo Argentino)',dPickup:'Ritiro di persona (gratis, ci accordiamo su WhatsApp)',
+        cpHint:'Inserisci il CAP per calcolare la spedizione.',shipCalc:'Calcolo della spedizione…',shipCoord:'Il costo di spedizione si concorda su WhatsApp.',
+        shipBad:'Non siamo riusciti a calcolare la spedizione per questo CAP. Controllalo o scegli il ritiro.',
+        shipLine:function(p,a,b){return 'Spedizione: '+p+(a?' · arriva in '+(b&&b!==a?a+'–'+b:a)+' giorni lavorativi':'');},
+        subtotal:'Prodotti',shipping:'Spedizione',free:'Gratis',toCoord:'Da concordare',
+        cuotas:function(n,v){return n+' rate senza interessi'+(v?' da '+v:'');},
+        opts:function(n,v){return 'In un’unica soluzione o in '+n+' rate senza interessi'+(v?' da '+v:'');},
+        checkout:'Procedi al pagamento',back:'Torna al carrello',form:'Dati per la spedizione',next:'Continua al pagamento',
+        nombre:'Nome e cognome',email:'Email',telefono:'Telefono / WhatsApp',direccion:'Indirizzo',ciudad:'Città',provincia:'Provincia',cp:'CAP',notas:'Note (facoltativo)',
+        payTitle:'Pagamento',mCard:'Carta di credito o debito',mMP:'Mercado Pago (saldo o altri mezzi, in un’unica soluzione)',
+        cardNumber:'Numero della carta',exp:'Scadenza',cvv:'Codice di sicurezza',holder:'Titolare (come sulla carta)',docType:'Documento',docNumber:'Numero di documento',
+        inst:'Rate',inst1:function(v){return 'In un’unica soluzione · '+v;},instN:function(n,v,free,tot){return n+' rate da '+v+(free?' senza interessi':' (totale '+tot+')');},instWait:'Inserisci il numero della carta',
+        payBtn:function(v){return 'Paga '+v;},payMP:'Continua su Mercado Pago',processing:'Elaborazione del pagamento…',backData:'Torna ai dati',
+        secure:'Pagamento protetto da Mercado Pago. Non salviamo i dati della carta.',
+        incomplete:'Completa tutti i dati della carta.',sdk:'Non è stato possibile caricare il modulo di pagamento. Riprova tra poco.',
+        rejected:'Il pagamento è stato rifiutato. Controlla i dati o prova con un’altra carta.',funds:'La carta non ha fondi sufficienti.',
+        badData:'Controlla i dati della carta e riprova.',authorize:'Devi autorizzare il pagamento con la tua banca e riprovare.',
+        err:'Non è stato possibile avviare il pagamento. Riprova o scrivici su WhatsApp.',
+        preview:'Il pagamento si attiva quando il sito è pubblicato su Netlify.',close:'Chiudi',open:'Carrello'},
+    es:{title:'Tu carrito',empty:'El carrito está vacío.',remove:'Quitar',less:'Quitar uno',more:'Agregar uno',total:'Total',
+        ship:'El envío se calcula con tu código postal en el paso siguiente.',
+        delivery:'Entrega',dHome:'Envío a domicilio (Correo Argentino)',dPickup:'Retiro en persona (sin cargo, coordinamos por WhatsApp)',
+        cpHint:'Ingresá tu código postal para calcular el envío.',shipCalc:'Calculando el envío…',shipCoord:'El costo de envío se coordina por WhatsApp.',
+        shipBad:'No pudimos calcular el envío para ese código postal. Revisalo o elegí retiro.',
+        shipLine:function(p,a,b){return 'Envío: '+p+(a?' · llega en '+(b&&b!==a?a+' a '+b:a)+' días hábiles':'');},
+        subtotal:'Productos',shipping:'Envío',free:'Sin cargo',toCoord:'A coordinar',
+        cuotas:function(n,v){return n+' cuotas sin interés'+(v?' de '+v:'');},
+        opts:function(n,v){return 'En un pago o en '+n+' cuotas sin interés'+(v?' de '+v:'');},
+        checkout:'Continuar al pago',back:'Volver al carrito',form:'Datos para el envío',next:'Continuar al pago',
+        nombre:'Nombre y apellido',email:'Email',telefono:'Teléfono / WhatsApp',direccion:'Dirección',ciudad:'Ciudad',provincia:'Provincia',cp:'Código postal',notas:'Notas (opcional)',
+        payTitle:'Pago',mCard:'Tarjeta de crédito o débito',mMP:'Mercado Pago (dinero en cuenta u otros medios, en un pago)',
+        cardNumber:'Número de tarjeta',exp:'Vencimiento',cvv:'Código de seguridad',holder:'Titular (como figura en la tarjeta)',docType:'Documento',docNumber:'Número de documento',
+        inst:'Cuotas',inst1:function(v){return 'En un pago · '+v;},instN:function(n,v,free,tot){return n+' cuotas de '+v+(free?' sin interés':' (total '+tot+')');},instWait:'Ingresá el número de tarjeta',
+        payBtn:function(v){return 'Pagar '+v;},payMP:'Continuar a Mercado Pago',processing:'Procesando el pago…',backData:'Volver a los datos',
+        secure:'Pago protegido por Mercado Pago. No guardamos los datos de tu tarjeta.',
+        incomplete:'Completá todos los datos de la tarjeta.',sdk:'No se pudo cargar el formulario de pago. Probá de nuevo en un rato.',
+        rejected:'El pago fue rechazado. Revisá los datos o probá con otra tarjeta.',funds:'La tarjeta no tiene saldo suficiente.',
+        badData:'Revisá los datos de la tarjeta y volvé a intentar.',authorize:'Tenés que autorizar el pago con tu banco y volver a intentar.',
+        err:'No pudimos iniciar el pago. Probá de nuevo o escribinos por WhatsApp.',
+        preview:'El pago se activa cuando la web está publicada en Netlify.',close:'Cerrar',open:'Carrito'}
+  };
+  var FIELDS=[['nombre','text',true,'name'],['email','email',true,'email'],['telefono','tel',true,'tel'],['cp','text',true,'postal-code'],['direccion','text',true,'street-address'],['ciudad','text',true,'address-level2'],['provincia','text',true,'address-level1'],['notas','text',false,'off']];
+  var ADDR=['cp','direccion','ciudad','provincia'];
+  var price=0,cuotas=3,publicKey='',live=false,step='cart',draft={},cart={},method='card',ref='',saved=false;
+  var delivery='domicilio',ship={cp:'',price:0,ok:false,coord:false,min:null,max:null,loading:false,bad:false},shipTimer=null;
+  var mp=null,fields=null,card={bin:null,methodId:null,typeId:null,issuerId:null,costs:[]};
+  function $(id){return document.getElementById(id);}
+  try{cart=JSON.parse(localStorage.getItem('gilden-cart')||'{}')||{};}catch(e){cart={};}
+  Object.keys(cart).forEach(function(k){if(!PRODUCTS[k]||!(cart[k]>0))delete cart[k];});
+  function save(){try{localStorage.setItem('gilden-cart',JSON.stringify(cart));}catch(e){}}
+  function t(){return T[document.documentElement.lang==='es'?'es':'it'];}
+  function money(v){return new Intl.NumberFormat('es-AR',{style:'currency',currency:'ARS',maximumFractionDigits:0}).format(v);}
+  function amount(q){return live?money(price*q):'USD '+(USD*q);}
+  function count(){var n=0;for(var k in cart)n+=cart[k];return n;}
+  function shipCost(){return delivery==='domicilio'&&ship.ok?ship.price:0;}
+  function total(){return price*count()+shipCost();}
+  function items(){return Object.keys(cart).map(function(id){return {id:id,qty:cart[id]};});}
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  var box=$('cart'),back=$('cart-back'),body=$('cart-body'),foot=$('cart-foot');
+
+  function keepDraft(){var f=$('co-form');if(!f)return;FIELDS.forEach(function(x){var i=f.elements[x[0]];if(i)draft[x[0]]=i.value;});}
+  function totalsHTML(L,n){
+    var shipTxt=delivery==='retiro'?L.free:(ship.ok?amount1(ship.price):(ship.coord?L.toCoord:'—'));
+    return '<div class="tot sub"><span>'+L.subtotal+'</span><span>'+amount(n)+'</span></div>'+
+      '<div class="tot sub"><span>'+L.shipping+'</span><span>'+shipTxt+'</span></div>'+
+      '<div class="tot"><span>'+L.total+'</span><b>'+(live?money(total()):amount(n))+'</b></div>'+
+      '<p class="note cuotas-note">'+L.opts(cuotas,live?money(total()/cuotas):'')+'</p>';
+  }
+  function amount1(v){return live?money(v):'$ '+v;}
+  function refreshTotals(){var L=t(),el=$('tot-box');if(el)el.innerHTML=totalsHTML(L,count());var sl=$('ship-line');if(sl){
+    sl.textContent=delivery==='retiro'?'':(ship.loading?L.shipCalc:(ship.ok?L.shipLine(money(ship.price),ship.min,ship.max):(ship.coord?L.shipCoord:(ship.bad?L.shipBad:L.cpHint))));}}
+  function quote(){
+    var cp=((draft.cp||'').toUpperCase().match(/\d{4}/)||[''])[0];
+    if(!cp){ship={cp:'',price:0,ok:false,coord:false,min:null,max:null,loading:false,bad:false};refreshTotals();return;}
+    if(cp===ship.cp&&ship.qty===count()&&(ship.ok||ship.coord))return refreshTotals();
+    ship={cp:cp,qty:count(),price:0,ok:false,coord:false,min:null,max:null,loading:true,bad:false};refreshTotals();
+    if(!live){ship.loading=false;ship.coord=true;refreshTotals();return;}
+    fetch('/api/envio?cp='+cp+'&cant='+count()).then(function(r){return r.json();}).then(function(j){
+      if(ship.cp!==cp)return;ship.loading=false;
+      if(j.ok){ship.ok=true;ship.price=j.precio;ship.min=j.min;ship.max=j.max;}else if(j.coordinar){ship.coord=true;}else{ship.bad=true;}
+      refreshTotals();
+    }).catch(function(){if(ship.cp!==cp)return;ship.loading=false;ship.bad=true;refreshTotals();});
+  }
+  function totalBlock(L,n){return '<div class="tot"><span>'+L.total+'</span><b>'+amount(n)+'</b></div><p class="note cuotas-note">'+L.opts(cuotas,live?money(price*n/cuotas):'')+'</p>';}
+
+  function render(){
+    var L=t(),n=count();
+    $('cart-title').textContent=step==='form'?L.form:(step==='pay'?L.payTitle:L.title);
+    $('cart-close').setAttribute('aria-label',L.close);
+    var badge=$('cart-count');badge.textContent=n;badge.hidden=!n;
+    $('cart-open').setAttribute('aria-label',L.open+(n?' ('+n+')':''));
+    if(!n)step='cart';
+    unmountCard();
+    if(step==='cart'){
+      body.innerHTML=!n?'<p class="cart-empty">'+L.empty+'</p>':'<ul class="cart-list">'+Object.keys(cart).map(function(id){var p=PRODUCTS[id],q=cart[id];
+          return '<li class="ci"><img src="'+p.img+'" alt=""><div class="ci-info"><b>'+p.name+'</b><span>'+p.kind+'</span>'+
+            '<div class="qty"><button type="button" data-dec="'+id+'" aria-label="'+L.less+'">−</button><output>'+q+'</output><button type="button" data-inc="'+id+'" aria-label="'+L.more+'">+</button></div>'+
+            '<button type="button" class="linkbtn small" data-rm="'+id+'">'+L.remove+'</button></div><span class="ci-price">'+amount(q)+'</span></li>';}).join('')+'</ul>';
+      foot.innerHTML=n?(totalBlock(L,n)+'<p class="note">'+L.ship+'</p><button type="button" class="btn" data-step="form">'+L.checkout+'</button>'):'';
+    }else if(step==='form'){
+      var pick=delivery==='retiro';
+      function field(x){var addr=ADDR.indexOf(x[0])>=0;
+        return '<label'+(addr?' class="addr"'+(pick?' hidden':''):'')+'>'+L[x[0]]+'<input name="'+x[0]+'" id="co-'+x[0]+'" type="'+x[1]+'"'+(x[2]&&!(addr&&pick)?' required':'')+' autocomplete="'+x[3]+'"'+(x[0]==='cp'?' inputmode="numeric"':'')+' value="'+esc(draft[x[0]]||'')+'"></label>'+
+          (x[0]==='cp'?'<p class="note ship-line'+(pick?'" hidden':'"')+' id="ship-line" aria-live="polite"></p>':'');}
+      body.innerHTML='<form id="co-form" class="co" novalidate>'+FIELDS.slice(0,3).map(field).join('')+
+        '<fieldset class="methods"><legend class="lgd">'+L.delivery+'</legend>'+
+          '<label class="method"><input type="radio" name="entrega" value="domicilio"'+(pick?'':' checked')+'><span>'+L.dHome+'</span></label>'+
+          '<label class="method"><input type="radio" name="entrega" value="retiro"'+(pick?' checked':'')+'><span>'+L.dPickup+'</span></label>'+
+        '</fieldset>'+FIELDS.slice(3).map(field).join('')+'<p class="co-msg" id="co-msg" role="alert" hidden></p></form>';
+      foot.innerHTML='<div id="tot-box">'+totalsHTML(L,n)+'</div><button type="submit" form="co-form" class="btn">'+L.next+'</button>'+
+        '<button type="button" class="linkbtn small" data-step="cart">'+L.back+'</button>';
+      var cpIn=$('co-cp');cpIn.addEventListener('input',function(){draft.cp=cpIn.value;clearTimeout(shipTimer);shipTimer=setTimeout(quote,500);});
+      if(!pick)quote();else refreshTotals();
+      $('co-form').addEventListener('submit',function(e){e.preventDefault();var f=e.target;if(!f.checkValidity()){f.reportValidity();return;}keepDraft();
+        if(delivery==='domicilio'&&live&&!ship.ok&&!ship.coord){quote();var m=$('co-msg');m.textContent=ship.loading?L.shipCalc:L.shipBad;m.hidden=false;return;}
+        if(!ref){ref='G'+Date.now().toString(36).toUpperCase();saved=false;}step='pay';render();});
+    }else{
+      body.innerHTML='<div class="pay">'+
+        '<fieldset class="methods"><legend class="sr">'+L.payTitle+'</legend>'+
+          '<label class="method"><input type="radio" name="pm" value="card"'+(method==='card'?' checked':'')+'><span>'+L.mCard+'</span></label>'+
+          '<label class="method"><input type="radio" name="pm" value="mp"'+(method==='mp'?' checked':'')+'><span>'+L.mMP+'</span></label>'+
+        '</fieldset>'+
+        '<form id="card-form" class="co"'+(method==='card'?'':' hidden')+' novalidate>'+
+          '<div class="lbl">'+L.cardNumber+'<div class="mpf" id="mp-number"></div></div>'+
+          '<div class="row2"><div class="lbl">'+L.exp+'<div class="mpf" id="mp-exp"></div></div><div class="lbl">'+L.cvv+'<div class="mpf" id="mp-cvv"></div></div></div>'+
+          '<label>'+L.holder+'<input id="cf-holder" autocomplete="cc-name" required value="'+esc(draft.nombre||'')+'"></label>'+
+          '<div class="row2"><label>'+L.docType+'<select id="cf-doctype"><option value="DNI">DNI</option></select></label><label>'+L.docNumber+'<input id="cf-doc" inputmode="numeric" autocomplete="off" required></label></div>'+
+          '<label>'+L.inst+'<select id="cf-inst" disabled><option>'+L.instWait+'</option></select></label>'+
+        '</form>'+
+        '<p class="note">'+L.secure+'</p><p class="co-msg" id="co-msg" role="alert" hidden></p></div>';
+      foot.innerHTML='<div id="tot-box">'+totalsHTML(L,n)+'</div>'+
+        '<button type="button" class="btn" id="co-pay">'+(method==='card'?L.payBtn(live?money(total()):amount(n)):L.payMP)+'</button>'+
+        '<button type="button" class="linkbtn small" data-step="form">'+L.backData+'</button>';
+      if(method==='card')mountCard();
+    }
+  }
+
+  function showMsg(text){var m=$('co-msg');if(m){m.textContent=text;m.hidden=false;}}
+  function busy(on){var b=$('co-pay'),L=t();if(!b)return;b.disabled=on;b.textContent=on?L.processing:(method==='card'?L.payBtn(live?money(total()):amount(count())):L.payMP);}
+
+  /* --- SDK de Mercado Pago (campos seguros de tarjeta) --- */
+  function loadScript(src){return new Promise(function(res,rej){if(document.querySelector('script[src="'+src+'"]'))return res();var s=document.createElement('script');s.src=src;s.onload=res;s.onerror=rej;document.head.appendChild(s);});}
+  function sdk(){
+    if(mp)return Promise.resolve(mp);
+    if(!publicKey)return Promise.reject(new Error('nokey'));
+    loadScript('https://www.mercadopago.com/v2/security.js').catch(function(){});
+    return loadScript('https://sdk.mercadopago.com/js/v2').then(function(){mp=new window.MercadoPago(publicKey,{locale:'es-AR'});return mp;});
+  }
+  function unmountCard(){if(fields){try{fields.number.unmount();fields.exp.unmount();fields.cvv.unmount();}catch(e){}fields=null;}card={bin:null,methodId:null,typeId:null,issuerId:null,costs:[]};}
+  function mountCard(){
+    if(!live){showMsg(t().preview);return;}
+    sdk().then(function(m){
+      if(step!=='pay'||method!=='card'||!$('mp-number'))return;
+      var st={fontSize:'16px',fontFamily:'Jost, Helvetica, Arial, sans-serif',color:'#0A0A0A'};
+      fields={
+        number:m.fields.create('cardNumber',{placeholder:'0000 0000 0000 0000',style:st}).mount('mp-number'),
+        exp:m.fields.create('expirationDate',{placeholder:'MM/AA',style:st}).mount('mp-exp'),
+        cvv:m.fields.create('securityCode',{placeholder:'123',style:st}).mount('mp-cvv')
+      };
+      fields.number.on('binChange',onBin);
+      m.getIdentificationTypes().then(function(types){var sel=$('cf-doctype');if(!sel||!types||!types.length)return;
+        sel.innerHTML=types.map(function(x){return '<option value="'+esc(x.id)+'">'+esc(x.name)+'</option>';}).join('');}).catch(function(){});
+    }).catch(function(){showMsg(t().sdk);});
+  }
+  function fillInstallments(){
+    var sel=$('cf-inst'),L=t();if(!sel)return;
+    if(!card.costs.length){sel.disabled=true;sel.innerHTML='<option>'+L.instWait+'</option>';return;}
+    sel.innerHTML=card.costs.map(function(c){
+      return '<option value="'+c.installments+'">'+(c.installments===1?L.inst1(money(c.total_amount)):L.instN(c.installments,money(c.installment_amount),c.installment_rate===0,money(c.total_amount)))+'</option>';
+    }).join('');
+    sel.disabled=card.costs.length<2;
+  }
+  function onBin(data){
+    var bin=data&&data.bin;
+    if(!bin){card={bin:null,methodId:null,typeId:null,issuerId:null,costs:[]};fillInstallments();return;}
+    if(bin===card.bin)return;card.bin=bin;
+    mp.getPaymentMethods({bin:bin}).then(function(r){
+      var pm=r&&r.results&&r.results[0];if(!pm)return;
+      card.methodId=pm.id;card.typeId=pm.payment_type_id;card.issuerId=pm.issuer&&pm.issuer.id;
+      try{var sc=pm.settings&&pm.settings[0]&&pm.settings[0].security_code;if(sc)fields.cvv.update({settings:sc});}catch(e){}
+      var issuerP=(pm.additional_info_needed||[]).indexOf('issuer_id')>=0?
+        mp.getIssuers({paymentMethodId:pm.id,bin:bin}).then(function(is){if(is&&is[0])card.issuerId=is[0].id;}):Promise.resolve();
+      return issuerP.then(function(){
+        if(pm.payment_type_id!=='credit_card'){card.costs=[{installments:1,installment_amount:total(),total_amount:total(),installment_rate:0}];fillInstallments();return;}
+        return mp.getInstallments({amount:String(total()),bin:bin,paymentTypeId:'credit_card'}).then(function(ins){
+          var pc=(ins&&ins[0]&&ins[0].payer_costs)||[];
+          card.costs=pc.filter(function(c){return ALLOWED.indexOf(c.installments)>=0&&c.installments<=cuotas;});
+          if(!card.costs.length)card.costs=[{installments:1,installment_amount:total(),total_amount:total(),installment_rate:0}];
+          fillInstallments();
+        });
+      });
+    }).catch(function(){});
+  }
+
+  /* --- Guardar el pedido (Netlify Forms) --- */
+  function saveOrder(medio){
+    if(saved)return Promise.resolve();
+    var p=new URLSearchParams();
+    p.append('form-name','pedido');p.append('ref',ref);
+    FIELDS.forEach(function(x){p.append(x[0],draft[x[0]]||'');});
+    p.append('detalle',items().map(function(i){return PRODUCTS[i.id].name+' x'+i.qty;}).join(', ')+' · '+medio);
+    p.append('entrega',delivery==='retiro'?'Retiro en persona':'Envío a domicilio');
+    p.append('envio',delivery==='retiro'?'0':(ship.ok?money(ship.price):'A coordinar'));
+    p.append('total',money(total()));
+    return fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:p.toString()})
+      .then(function(r){if(!r.ok)throw new Error('form');saved=true;});
+  }
+  function api(payload){
+    return fetch('/api/pago',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
+      .then(function(r){return r.json().then(function(j){if(!r.ok)throw j;return j;});});
+  }
+  function done(estado){try{localStorage.removeItem('gilden-cart');}catch(e){}window.location.href='/gracias.html?estado='+estado+'&external_reference='+encodeURIComponent(ref);}
+  function reason(detail){var L=t();
+    if(detail==='cc_rejected_insufficient_amount')return L.funds;
+    if(/bad_filled/.test(detail||''))return L.badData;
+    if(detail==='cc_rejected_call_for_authorize')return L.authorize;
+    return L.rejected;}
+
+  function pay(){
+    var L=t();$('co-msg').hidden=true;
+    if(!live){showMsg(L.preview);return;}
+    var base={items:items(),ref:ref,nombre:draft.nombre,email:draft.email,entrega:delivery,cp:draft.cp||''};
+    if(method==='mp'){
+      busy(true);
+      saveOrder('Mercado Pago').then(function(){return api(Object.assign({modo:'mp'},base));})
+        .then(function(j){window.location.href=j.url;})
+        .catch(function(){busy(false);showMsg(L.err);});
+      return;
+    }
+    var holder=($('cf-holder').value||'').trim(),doc=($('cf-doc').value||'').replace(/\D/g,''),docType=$('cf-doctype').value,inst=parseInt($('cf-inst').value,10);
+    if(!fields||!card.methodId||!holder||!doc||ALLOWED.indexOf(inst)<0){showMsg(L.incomplete);return;}
+    busy(true);
+    saveOrder(inst===1?'Tarjeta · 1 pago':'Tarjeta · '+inst+' cuotas')
+      .then(function(){return mp.fields.createCardToken({cardholderName:holder,identificationType:docType,identificationNumber:doc});})
+      .then(function(tok){
+        return api(Object.assign({modo:'tarjeta',token:tok.id,payment_method_id:card.methodId,issuer_id:card.issuerId,installments:inst,
+          doc_type:docType,doc_number:doc,device:window.MP_DEVICE_SESSION_ID||''},base));
+      })
+      .then(function(j){
+        if(j.status==='approved')return done('ok');
+        if(j.status==='in_process'||j.status==='pending')return done('pendiente');
+        busy(false);showMsg(reason(j.detail));
+      })
+      .catch(function(e){busy(false);showMsg(e&&e.detail?reason(e.detail):(e&&e.message==='form'?L.err:L.badData));});
+  }
+
+  function updatePrices(){
+    var L=t();
+    document.querySelectorAll('[data-price]').forEach(function(s){s.textContent=live?money(price):'USD '+USD;});
+    document.querySelectorAll('.card .meta > div').forEach(function(d){
+      var c=d.querySelector('.cuotas');if(!c){c=document.createElement('span');c.className='kind cuotas';d.appendChild(c);}
+      c.textContent=L.cuotas(cuotas,live?money(price/cuotas):'');
+    });
+  }
+
+  function openCart(){box.hidden=false;back.hidden=false;document.documentElement.style.overflow='hidden';render();$('cart-close').focus();}
+  function closeCart(){keepDraft();box.hidden=true;back.hidden=true;document.documentElement.style.overflow='';unmountCard();if(step==='pay')step='form';$('cart-open').focus();}
+
+  document.addEventListener('click',function(e){
+    var add=e.target.closest('[data-add]');
+    if(add){var b2=add.closest('.card,.feat'),h=b2&&b2.querySelector('h3,h2'),id=h&&BY_NAME[h.textContent.trim()];
+      if(id){cart[id]=Math.min(MAXQ,(cart[id]||0)+1);save();ref='';step='cart';openCart();}return;}
+    if(e.target.closest('#cart-open')){step='cart';openCart();return;}
+    if(e.target.closest('#cart-close')||e.target===back){closeCart();return;}
+    if(e.target.closest('#co-pay')){pay();return;}
+    var b;
+    if((b=e.target.closest('[data-inc]'))){var i=b.dataset.inc;cart[i]=Math.min(MAXQ,cart[i]+1);ref='';save();render();return;}
+    if((b=e.target.closest('[data-dec]'))){var d=b.dataset.dec;cart[d]-=1;if(cart[d]<1)delete cart[d];ref='';save();render();return;}
+    if((b=e.target.closest('[data-rm]'))){delete cart[b.dataset.rm];ref='';save();render();return;}
+    if((b=e.target.closest('[data-step]'))){keepDraft();step=b.dataset.step;render();var first=$('co-nombre');if(first)first.focus();}
+  });
+  document.addEventListener('change',function(e){
+    if(e.target.name==='pm'){method=e.target.value;render();}
+    if(e.target.name==='entrega'){keepDraft();delivery=e.target.value;render();}
+  });
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!box.hidden)closeCart();});
+
+  window.GildenCart={refresh:function(){if(step==='pay'){var L=t();$('cart-title').textContent=L.payTitle;updatePrices();return;}keepDraft();render();updatePrices();}};
+  render();updatePrices();
+  fetch('/api/pago').then(function(r){return r.ok?r.json():null;}).then(function(j){
+    if(j&&j.precio>0){price=j.precio;cuotas=j.cuotas||3;publicKey=j.publicKey||'';live=true;render();updatePrices();}
+  }).catch(function(){});
+})();
+</script>
+
+</body>
+</html>
