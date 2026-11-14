@@ -237,7 +237,7 @@ footer .legal{border-top:1px solid #2A2A2A;padding-top:22px;font-size:12px;lette
 <body>
 
 
-<div class="bar" data-i="bar">Spedizioni in tutto il paese · Ordina online o su WhatsApp</div>
+<div class="bar" data-i="bar">Spedizione gratuita in tutto il paese · Ordina online o su WhatsApp</div>
 
 <header>
   <div class="wrap">
@@ -439,7 +439,7 @@ var SHOP={
 
   var T={
     es:{
-      bar:'Envíos a todo el país · Comprá online o por WhatsApp',
+      bar:'Envío gratis a todo el país · Comprá online o por WhatsApp',
       navLabel:'Principal',nav1:'Perfumes',nav2:'Colección',langLabel:'Idioma',search:'Buscar',account:'Cuenta',cart:'Carrito',
       heroEye:'Perfumes de autor',heroH1:'La esencia <i>de lo atemporal.</i>',
       heroP:'Dolce Peccato y Il tepore. Dos fragancias, dos historias para llevar puestas.',
@@ -538,7 +538,8 @@ var SHOP={
   var T={
     it:{title:'Il tuo carrello',empty:'Il carrello è vuoto.',remove:'Rimuovi',less:'Togli uno',more:'Aggiungi uno',total:'Totale',
         ship:'La spedizione si calcola con il CAP nel passo successivo.',
-        delivery:'Consegna',dHome:'Spedizione a domicilio (Correo Argentino)',dPickup:'Ritiro di persona (gratis, ci accordiamo su WhatsApp)',
+        freeShip:'Spedizione gratuita in tutto il paese.',
+        delivery:'Consegna',dHome:'Spedizione a domicilio gratuita (Correo Argentino)',dPickup:'Ritiro di persona (gratis, ci accordiamo su WhatsApp)',
         cpHint:'Inserisci il CAP per calcolare la spedizione.',shipCalc:'Calcolo della spedizione…',shipCoord:'Il costo di spedizione si concorda su WhatsApp.',
         shipBad:'Non siamo riusciti a calcolare la spedizione per questo CAP. Controllalo o scegli il ritiro.',
         shipLine:function(p,a,b){return 'Spedizione: '+p+(a?' · arriva in '+(b&&b!==a?a+'–'+b:a)+' giorni lavorativi':'');},
@@ -566,7 +567,8 @@ var SHOP={
         preview:'Il pagamento si attiva quando il sito è pubblicato su Netlify.',close:'Chiudi',open:'Carrello'},
     es:{title:'Tu carrito',empty:'El carrito está vacío.',remove:'Quitar',less:'Quitar uno',more:'Agregar uno',total:'Total',
         ship:'El envío se calcula con tu código postal en el paso siguiente.',
-        delivery:'Entrega',dHome:'Envío a domicilio (Correo Argentino)',dPickup:'Retiro en persona (sin cargo, coordinamos por WhatsApp)',
+        freeShip:'Envío gratis a todo el país.',
+        delivery:'Entrega',dHome:'Envío a domicilio gratis (Correo Argentino)',dPickup:'Retiro en persona (sin cargo, coordinamos por WhatsApp)',
         cpHint:'Ingresá tu código postal para calcular el envío.',shipCalc:'Calculando el envío…',shipCoord:'El costo de envío se coordina por WhatsApp.',
         shipBad:'No pudimos calcular el envío para ese código postal. Revisalo o elegí retiro.',
         shipLine:function(p,a,b){return 'Envío: '+p+(a?' · llega en '+(b&&b!==a?a+' a '+b:a)+' días hábiles':'');},
@@ -617,7 +619,7 @@ var SHOP={
 
   function keepDraft(){var f=$('co-form');if(!f)return;FIELDS.forEach(function(x){var i=f.elements[x[0]];if(i)draft[x[0]]=i.value;});}
   function totalsHTML(L,n){
-    var shipTxt=delivery==='retiro'?L.free:(ship.ok?amount1(ship.price):(ship.coord?L.toCoord:'—'));
+    var shipTxt=delivery==='retiro'?L.free:(ship.ok?(ship.price?amount1(ship.price):L.free):(ship.coord?L.toCoord:'—'));
     return '<div class="tot sub"><span>'+L.subtotal+'</span><span>'+amount(n)+'</span></div>'+
       '<div class="tot sub"><span>'+L.shipping+'</span><span>'+shipTxt+'</span></div>'+
       '<div class="tot"><span>'+(step==='pay'?L.total:L.totalC)+'</span><b>'+(live?money(total()):amount(n))+'</b></div>'+
@@ -626,7 +628,7 @@ var SHOP={
   }
   function amount1(v){return live?money(v):'$ '+v;}
   function refreshTotals(){var L=t(),el=$('tot-box');if(el)el.innerHTML=totalsHTML(L,count());var sl=$('ship-line');if(sl){
-    sl.textContent=delivery==='retiro'?'':(ship.loading?L.shipCalc:(ship.ok?L.shipLine(money(ship.price),ship.min,ship.max):(ship.coord?L.shipCoord:(ship.bad?L.shipBad:L.cpHint))));}}
+    sl.textContent=delivery==='retiro'?'':(ship.loading?L.shipCalc:(ship.ok?(ship.price?L.shipLine(money(ship.price),ship.min,ship.max):L.freeShip):(ship.coord?L.shipCoord:(ship.bad?L.shipBad:L.cpHint))));}}
   function quote(){
     var cp=((draft.cp||'').toUpperCase().match(/\d{4}/)||[''])[0];
     if(!cp){ship={cp:'',price:0,ok:false,coord:false,min:null,max:null,loading:false,bad:false};refreshTotals();return;}

@@ -7,6 +7,7 @@
 //   PESO_GRAMOS                   peso de cada perfume con su caja (por defecto 400)
 //   CAJA_CM                       medidas de la caja: largo,ancho,alto en cm (por defecto 10,8,16)
 //   ENVIO_FIJO_ARS                costo fijo de respaldo si la API no responde (opcional)
+//   ENVIO_GRATIS                  por defecto el envío es gratis; poné 0 para cobrarlo
 
 const BASE = () => process.env.CORREO_ENTORNO === 'test'
   ? 'https://apitest.correoargentino.com.ar/micorreo/v1'
@@ -62,6 +63,8 @@ async function cotizarCorreo(cp, cantidad) {
 // Devuelve null si no hay forma de calcular el envío (se coordina por WhatsApp).
 export async function cotizar(cpRaw, cantidad) {
   const cp = normalizarCP(cpRaw);
+  // Envío gratis a todo el país (ENVIO_GRATIS=0 en Netlify para volver a cobrarlo).
+  if ((process.env.ENVIO_GRATIS ?? '1') !== '0') return { precio: 0, min: null, max: null, nombre: 'Envío gratis', fuente: 'gratis' };
   const fijo = Number(process.env.ENVIO_FIJO_ARS || 0);
   if (cp && correoConfigurado()) {
     try { return { ...(await cotizarCorreo(cp, cantidad)), fuente: 'correo' }; }

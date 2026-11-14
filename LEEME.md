@@ -13,7 +13,7 @@ Datos de transferencia (variables en Netlify): `TRANSFER_ALIAS`, `TRANSFER_CBU`,
 Precios en dólares: `PRECIO_USD` (transferencia y Mercado Pago, 140) y `PRECIO_USD_TARJETA` (tarjeta, 160).
 
 Entrega:
-- **Envío a domicilio**: el costo se calcula solo con el código postal del cliente (Correo Argentino) y se suma al total.
+- **Envío a domicilio**: gratis a todo el país (Correo Argentino). Para volver a cobrarlo, cargá `ENVIO_GRATIS` = `0` en Netlify y se cotiza con el código postal.
 - **Retiro en persona**: sin cargo, se coordina por WhatsApp.
 
 ## Qué hay en esta carpeta
