@@ -2,6 +2,8 @@
 
 Web de Gilden con carrito y pago por Mercado Pago.
 
+**Dirección:** https://gildenprofumi.com (también responde en www.gildenprofumi.com y gildenprofumi.netlify.app).
+
 Formas de pago:
 - **Tarjeta de crédito o débito**, dentro de la web: solo **1 pago** o **3 cuotas sin interés**.
 - **Mercado Pago** (dinero en cuenta u otros medios): siempre en **1 pago**.
