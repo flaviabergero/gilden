@@ -130,6 +130,8 @@ export default async (req) => {
       pending: `${sitio}/gracias.html?estado=pendiente`,
       failure: `${sitio}/gracias.html?estado=error`
     },
+    // Mercado Pago avisa acá cuando el pago se acredita, y la web te manda el email "PAGADO".
+    notification_url: `${sitio}/api/mp-aviso`,
     auto_return: 'approved',
     payment_methods: { installments: 1 },
     statement_descriptor: 'GILDEN'

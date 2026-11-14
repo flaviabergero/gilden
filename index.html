@@ -231,6 +231,8 @@ footer .legal{border-top:1px solid #2A2A2A;padding-top:22px;font-size:12px;lette
 .tdata dd{margin:0;display:flex;justify-content:space-between;align-items:center;gap:10px;font-variant-numeric:tabular-nums;word-break:break-all}
 .method b{font-weight:500}
 .co .method{flex-direction:row;align-items:center;gap:12px;font-size:14px;letter-spacing:0;text-transform:none;color:var(--ink)}
+/* Oculta la insignia "Powered by Netlify" */
+#nl-badge-frame{display:none!important}
 </style>
 <style>html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
@@ -381,7 +383,7 @@ footer .legal{border-top:1px solid #2A2A2A;padding-top:22px;font-size:12px;lette
   <div class="cart-foot" id="cart-foot"></div>
 </aside>
 <form name="pedido" data-netlify="true" netlify-honeypot="bot-field" hidden>
-  <input name="ref"><input name="nombre"><input name="email"><input name="telefono"><input name="direccion"><input name="ciudad"><input name="provincia"><input name="cp"><input name="notas"><input name="entrega"><input name="envio"><input name="detalle"><input name="total"><input name="bot-field">
+  <input name="ref"><input name="nombre"><input name="email"><input name="telefono"><input name="direccion"><input name="ciudad"><input name="provincia"><input name="cp"><input name="notas"><input name="entrega"><input name="envio"><input name="detalle"><input name="total"><input name="estado"><input name="subject"><input name="bot-field">
 </form>
 
 <footer class="dark">
@@ -767,10 +769,11 @@ var SHOP={
   }
 
   /* --- Guardar el pedido (Netlify Forms) --- */
-  function saveOrder(medio){
+  function saveOrder(medio,estado,asunto){
     if(saved)return Promise.resolve();
     var p=new URLSearchParams();
     p.append('form-name','pedido');p.append('ref',ref);
+    p.append('estado',estado);p.append('subject',asunto+' · Pedido '+ref+' · '+draft.nombre);
     FIELDS.forEach(function(x){p.append(x[0],draft[x[0]]||'');});
     p.append('detalle',items().map(function(i){return PRODUCTS[i.id].name+' x'+i.qty;}).join(', ')+' · '+medio);
     p.append('entrega',delivery==='retiro'?'Retiro en persona':'Envío a domicilio');
@@ -796,13 +799,13 @@ var SHOP={
     var base={items:items(),ref:ref,nombre:draft.nombre,email:draft.email,entrega:delivery,cp:draft.cp||''};
     if(method==='transfer'){
       busy(true);var tot=money(total());
-      saveOrder('Transferencia').then(function(){lastOrder={ref:ref,total:tot};cart={};save();ref='';saved=false;step='done';render();updatePrices();})
+      saveOrder('Transferencia','⏳ SIN PAGAR · Transferencia: esperá el comprobante antes de despachar','⏳ Sin pagar (transferencia)').then(function(){lastOrder={ref:ref,total:tot};cart={};save();ref='';saved=false;step='done';render();updatePrices();})
         .catch(function(){busy(false);showMsg(L.err);});
       return;
     }
     if(method==='mp'){
       busy(true);
-      saveOrder('Mercado Pago').then(function(){return api(Object.assign({modo:'mp'},base));})
+      saveOrder('Mercado Pago','⏳ SIN PAGAR TODAVÍA · El cliente fue a pagar a Mercado Pago. Si paga, te llega otro email "✅ PAGADO" con este mismo número.','⏳ Sin pagar todavía (Mercado Pago)').then(function(){return api(Object.assign({modo:'mp'},base));})
         .then(function(j){window.location.href=j.url;})
         .catch(function(){busy(false);showMsg(L.err);});
       return;
@@ -810,15 +813,17 @@ var SHOP={
     var holder=($('cf-holder').value||'').trim(),doc=($('cf-doc').value||'').replace(/\D/g,''),docType=$('cf-doctype').value,inst=parseInt($('cf-inst').value,10);
     if(!fields||!card.methodId||!holder||!doc||ALLOWED.indexOf(inst)<0){showMsg(L.incomplete);return;}
     busy(true);
-    saveOrder(inst===1?'Tarjeta · 1 pago':'Tarjeta · '+inst+' cuotas')
-      .then(function(){return mp.fields.createCardToken({cardholderName:holder,identificationType:docType,identificationNumber:doc});})
+    var medio=inst===1?'Tarjeta · 1 pago':'Tarjeta · '+inst+' cuotas';
+    // Con tarjeta el pedido se guarda después del cobro, así el email ya dice si quedó pagado.
+    var cerrar=function(estado,asunto,fin){return saveOrder(medio,estado,asunto).catch(function(){}).then(function(){done(fin);});};
+    mp.fields.createCardToken({cardholderName:holder,identificationType:docType,identificationNumber:doc})
       .then(function(tok){
         return api(Object.assign({modo:'tarjeta',token:tok.id,payment_method_id:card.methodId,issuer_id:card.issuerId,installments:inst,
           doc_type:docType,doc_number:doc,device:window.MP_DEVICE_SESSION_ID||''},base));
       })
       .then(function(j){
-        if(j.status==='approved')return done('ok');
-        if(j.status==='in_process'||j.status==='pending')return done('pendiente');
+        if(j.status==='approved')return cerrar('✅ PAGADO con tarjeta'+(j.id?' (pago n.º '+j.id+')':''),'✅ PAGADO','ok');
+        if(j.status==='in_process'||j.status==='pending')return cerrar('🕓 EN REVISIÓN · Mercado Pago está revisando el pago con tarjeta'+(j.id?' (n.º '+j.id+')':'')+'. No despaches hasta que figure aprobado en Mercado Pago.','🕓 Pago en revisión','pendiente');
         busy(false);showMsg(reason(j.detail));
       })
       .catch(function(e){busy(false);showMsg(e&&e.detail?reason(e.detail):(e&&e.message==='form'?L.err:L.badData));});

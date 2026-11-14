@@ -76,3 +76,10 @@ Entrega:
 - El precio en pesos se actualiza solo con el dólar vendedor del BNA.
 - Para cambiar el precio en dólares, editá `PRECIO_USD` en Netlify y hacé "Trigger deploy".
 - Si alguna vez querés un precio fijo en pesos, cargá `PRECIO_ARS` (ese valor manda sobre el dólar). Para volver al dólar, borrá `PRECIO_ARS`.
+
+## Aviso de pago en cada pedido
+Cada email de pedido trae el campo **estado** y el asunto lo dice:
+- **⏳ Sin pagar (transferencia)**: esperá el comprobante por WhatsApp antes de despachar.
+- **⏳ Sin pagar todavía (Mercado Pago)**: el cliente fue a pagar. Si paga, llega un segundo email **✅ PAGADO** con el mismo número de pedido (lo manda `netlify/functions/mp-aviso.mjs` cuando Mercado Pago avisa).
+- **✅ PAGADO** (tarjeta): el cobro ya está aprobado.
+- **🕓 Pago en revisión** (tarjeta): no despaches hasta que figure aprobado en Mercado Pago.
